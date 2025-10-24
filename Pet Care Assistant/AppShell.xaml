@@ -3,12 +3,24 @@
     x:Class="Pet_Care_Assistant.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Pet_Care_Assistant"
+    xmlns:local="clr-namespace:Pet_Care_Assistant.Views"
     Title="Pet_Care_Assistant">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!--<TabBar>-->
+        <!-- aici adaugam restul de pagini -->
+        <ShellContent
+             Title="Home"
+             ContentTemplate="{DataTemplate local:MainPage}"
+             Route="MainPage" />
+        <ShellContent
+             Title="Pet List"
+             ContentTemplate="{DataTemplate local:PetListPage}"
+             Route="PetListPage" />
+        <ShellContent
+             Title="Settings"
+             ContentTemplate="{DataTemplate local:SettingsPage}"
+             Route="SettingsPage" />
+    <!--</TabBar>-->
+   
 
 </Shell>

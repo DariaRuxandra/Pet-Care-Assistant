@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pet_Care_Assistant.Views.MainPage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Clicked="OnGoToPetProfileClicked" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+
+
+    <VerticalStackLayout>
+        <Label 
+        Text="Pagina de start"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+
+
+        <Button
+        Text="Get started"
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        Clicked="OnGoToPetProfileClicked"/>
+    </VerticalStackLayout>
+
+    
+
+</ContentPage>
