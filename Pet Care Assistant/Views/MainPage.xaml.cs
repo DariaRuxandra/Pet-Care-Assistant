@@ -9,7 +9,7 @@
 
         private void OnGoToPetProfileClicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("SettingsPage");
+            Shell.Current.GoToAsync("PetListPage");
         }
     }
 }

@@ -4,9 +4,34 @@
              x:Class="Pet_Care_Assistant.Views.PetListPage"
              Title="PetListPage">
     <VerticalStackLayout>
-        <Label 
+        <!--<Label 
             Text="Aici vreau sa testez daca se extrag bine rasele de caini sau ce naiba extragem noi din xml si eventual sa avem un dropdown list cu rase de caini sau pisici - cand introducem un animalut nou"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" />-->
+
+        <!--<Label x:Name="DebugLabel"
+               Text="Loading..."
+               FontSize="14"
+               LineBreakMode="WordWrap" />-->
+
+        <Label Text="Choose a dog breed from the list below:" FontAttributes="Bold" />
+
+        <Picker x:Name="BreedPicker" Title="Choose breed" />
+
+        <Label x:Name="SelectedBreedLabel" Text="Selected: none" />
+
+        <!--<CollectionView x:Name="BreedsCollection" SelectionMode="Single" HeightRequest="400">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="8" Margin="0,4" HasShadow="True" CornerRadius="6">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Breed}" FontAttributes="Bold" />
+                            <Label Text="{Binding Origin}" FontAttributes="Italic" FontSize="Micro" />
+                            <Label Text="{Binding Temperament}" FontSize="Small" LineBreakMode="WordWrap" MaxLines="3" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
     </VerticalStackLayout>
 </ContentPage>

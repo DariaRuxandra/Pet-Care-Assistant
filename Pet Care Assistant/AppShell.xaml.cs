@@ -7,7 +7,7 @@ namespace Pet_Care_Assistant
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("SettingsPage", typeof(SettingsPage));
+            Routing.RegisterRoute("PetListPage", typeof(PetListPage));
         }
     }
 }
