@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pet_Care_Assistant.Views.PetFormPage"
+             Title="Add Pet">
+    <VerticalStackLayout Padding="20">
+        <Entry Placeholder="Name" Text="{Binding Name}" />
+        <Entry Placeholder="Species" Text="{Binding Species}" />
+        <Entry Placeholder="Breed" Text="{Binding Breed}" />
+        <Entry Placeholder="Age" Keyboard="Numeric" Text="{Binding Age}" />
+        <Button Text="Save" Command="{Binding SavePetCommand}" />
+        <CollectionView ItemsSource="{Binding Pets}" HeightRequest="200">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
