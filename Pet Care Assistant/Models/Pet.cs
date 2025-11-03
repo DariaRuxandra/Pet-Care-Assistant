@@ -17,15 +17,16 @@ namespace Pet_Care_Assistant.Models
         public string OwnerName { get; set; } = "";
         public string OwnerContact { get; set; } = "";
 
-        public Pet(int id, string name, string species, string breed, int age, DateTime dateOfBirth, string ownerName, string ownerContact) {
-            id = Id;
-            name = Name;    
-            species = Species;
-            breed = Breed;
-            age = Age;
-            dateOfBirth = dateOfBirth;
-            ownerName = OwnerName;
-            ownerContact = OwnerContact;
+        public Pet(int id, string name, string species, string breed, int age, DateTime dateOfBirth, string ownerName, string ownerContact)
+        {
+            Id = id;
+            Name = name;
+            Species = species;
+            Breed = breed;
+            Age = age;
+            this.dateOfBirth = dateOfBirth;
+            OwnerName = ownerName;
+            OwnerContact = ownerContact;
         }
     }
 }

@@ -13,10 +13,14 @@
              ContentTemplate="{DataTemplate local:MainPage}"
              Route="MainPage" />
         <ShellContent
-             Title="Pet List"
+             Title="Pet Form"
              ContentTemplate="{DataTemplate local:PetListPage}"
              Route="PetListPage" />
-        <ShellContent
+    <ShellContent
+             Title="Pet List"
+             ContentTemplate="{DataTemplate local:PetFormPage}"
+             Route="PetFormPage" />
+    <ShellContent
              Title="Settings"
              ContentTemplate="{DataTemplate local:SettingsPage}"
              Route="SettingsPage" />

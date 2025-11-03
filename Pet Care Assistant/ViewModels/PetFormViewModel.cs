@@ -8,14 +8,19 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
+
 namespace Pet_Care_Assistant.ViewModels
 {
     public partial class PetFormViewModel : ObservableObject
     {
-        private readonly SqliteConnectionFactory _db;
-        private readonly ObservableCollection<PetDto> _pets;
-        public ObservableCollection<PetDto> Pets => _pets;
-        public IEnumerable<PetDto> AllPets => _pets;
+        public Pet pet1 = new Pet(1,"Buddy", "Dog", "Golden Retriever", 3, DateTime.Now.AddYears(-3), "Alice Smith", "0733628134");
+        public Pet pet2 = new Pet(1,"Victor", "Dog", "Bulldog", 3, DateTime.Now.AddYears(-2), "Daria ", "0733128134");
+        public ObservableCollection<Pet> PetsList { get; } = new();
+
+        //private readonly SqliteConnectionFactory _db;
+        //private readonly ObservableCollection<PetDto> _pets;
+        //public ObservableCollection<PetDto> Pets => _pets;
+        //public IEnumerable<PetDto> AllPets => _pets;
 
         [ObservableProperty] private string name = "";
         [ObservableProperty] private string species = "";
@@ -28,15 +33,18 @@ namespace Pet_Care_Assistant.ViewModels
         [ObservableProperty] private string ownerName = "";
         [ObservableProperty] private string ownerContact = "";
 
-        // Explicit command (avoid relying only on source-generator output)
+        //// Explicit command (avoid relying only on source-generator output)
         public IAsyncRelayCommand SavePetCommand { get; }
 
-        public PetFormViewModel(SqliteConnectionFactory db)
+        public PetFormViewModel()
         {
-            _db = db ?? throw new ArgumentNullException(nameof(db));
-            _pets = new ObservableCollection<PetDto>();
-            SavePetCommand = new AsyncRelayCommand(SavePetAsync);
-            _ = LoadPetsAsync();
+            PetsList.Add(pet1);
+            PetsList.Add(pet2);
+
+            //_db = db ?? throw new ArgumentNullException(nameof(db));
+            //_pets = new ObservableCollection<PetDto>();
+            //SavePetCommand = new AsyncRelayCommand(SavePetAsync);
+            //_ = LoadPetsAsync();
         }
 
         // Keep AgeText and Age in sync
@@ -53,40 +61,40 @@ namespace Pet_Care_Assistant.ViewModels
             AgeText = value.ToString();
         }
 
-        public async Task LoadPetsAsync()
-        {
-            var conn = _db.CreateConnection();
-            var petDtos = await conn.Table<PetDto>().ToListAsync();
-            _pets.Clear();
-            foreach (var dto in petDtos)
-            {
-                _pets.Add(dto);
-            }
-        }
+        //public async Task LoadPetsAsync()
+        //{
+        //    var conn = _db.CreateConnection();
+        //    var petDtos = await conn.Table<PetDto>().ToListAsync();
+        //    _pets.Clear();
+        //    foreach (var dto in petDtos)
+        //    {
+        //        _pets.Add(dto);
+        //    }
+        //}
 
-        public async Task SavePetAsync()
-        {
-            var conn = _db.CreateConnection();
+        //public async Task SavePetAsync()
+        //{
+        //    var conn = _db.CreateConnection();
 
-            var dto = new PetDto
-            {
-                Name = Name,
-                Species = Species,
-                Breed = Breed,
-                Age = Age,
-                dateOfBirth = DateOfBirth,
-                OwnerName = OwnerName,
-                OwnerContact = OwnerContact
-            };
+        //    var dto = new PetDto
+        //    {
+        //        Name = Name,
+        //        Species = Species,
+        //        Breed = Breed,
+        //        Age = Age,
+        //        dateOfBirth = DateOfBirth,
+        //        OwnerName = OwnerName,
+        //        OwnerContact = OwnerContact
+        //    };
 
-            await conn.InsertAsync(dto); // dto.Id will be set after insert
-            _pets.Add(dto);
+        //    await conn.InsertAsync(dto); // dto.Id will be set after insert
+        //    _pets.Add(dto);
 
-            // clear form
-            Name = Species = Breed = "";
-            Age = 0;
-            DateOfBirth = DateTime.Now;
-            OwnerName = OwnerContact = "";
-        }
+        //    // clear form
+        //    Name = Species = Breed = "";
+        //    Age = 0;
+        //    DateOfBirth = DateTime.Now;
+        //    OwnerName = OwnerContact = "";
+        //}
     }
 }

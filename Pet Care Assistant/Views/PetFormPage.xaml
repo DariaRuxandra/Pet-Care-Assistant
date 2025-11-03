@@ -4,15 +4,14 @@
              xmlns:vm="clr-namespace:Pet_Care_Assistant.ViewModels"
              xmlns:models="clr-namespace:Pet_Care_Assistant.Models"
              x:Class="Pet_Care_Assistant.Views.PetFormPage"
-             x:DataType="vm:PetFormViewModel"
-             Title="Add Pet">
+             Title="All pets">
     <VerticalStackLayout Padding="20">
-        <Entry Placeholder="Name" Text="{Binding Name}" />
+        <!--<Entry Placeholder="Name" Text="{Binding Name}" />
         <Entry Placeholder="Species" Text="{Binding Species}" />
         <Entry Placeholder="Breed" Text="{Binding Breed}" />
 
-        <!-- Bind to AgeText (string) so the Entry shows/accepts text correctly -->
-        <Entry Placeholder="Age" Keyboard="Numeric" Text="{Binding AgeText, Mode=TwoWay}" />
+        --><!-- Bind to AgeText (string) so the Entry shows/accepts text correctly --><!--
+        <Entry Placeholder="Age" Keyboard="Numeric" Text="{Binding AgeText}" />
 
         <DatePicker Date="{Binding DateOfBirth}" />
 
@@ -25,6 +24,34 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:PetDto">
                     <Label Text="{Binding Name}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
+
+        <CollectionView ItemsSource="{Binding PetsList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
+                            <Label Text="{Binding Species}" />
+                            <Label Text="{Binding Breed}" />
+                            <HorizontalStackLayout>
+                                <Label Text="Age: " />
+                                <Label Text="{Binding Age}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label Text="Owner: " />
+                                <Label Text="{Binding OwnerName}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label Text="Contact: " />
+                                <Label Text="{Binding OwnerContact}" />
+                            </HorizontalStackLayout>
+
+
+                        </VerticalStackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
