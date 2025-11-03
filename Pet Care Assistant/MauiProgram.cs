@@ -36,15 +36,9 @@ namespace Pet_Care_Assistant
             builder.Services.AddSingleton<DogBreedService>();
             builder.Services.AddTransient<Views.PetFormPage>();
             builder.Services.AddTransient<ViewModels.PetFormViewModel>();
+            builder.Services.AddSingleton<SqliteConnectionFactory>();
 
             var app = builder.Build();
-
-            // apply migrations / ensure DB created
-            using (var scope = app.Services.CreateScope())
-            {
-                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                db.Database.Migrate();
-            }
 
             return app;
         }

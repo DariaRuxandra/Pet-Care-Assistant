@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Pet_Care_Assistant.ViewModels"
+             xmlns:models="clr-namespace:Pet_Care_Assistant.Models"
              x:Class="Pet_Care_Assistant.Views.PetFormPage"
+             x:DataType="vm:PetFormViewModel"
              Title="Add Pet">
     <VerticalStackLayout Padding="20">
         <Entry Placeholder="Name" Text="{Binding Name}" />
         <Entry Placeholder="Species" Text="{Binding Species}" />
         <Entry Placeholder="Breed" Text="{Binding Breed}" />
-        <Entry Placeholder="Age" Keyboard="Numeric" Text="{Binding Age}" />
+
+        <!-- Bind to AgeText (string) so the Entry shows/accepts text correctly -->
+        <Entry Placeholder="Age" Keyboard="Numeric" Text="{Binding AgeText, Mode=TwoWay}" />
+
+        <DatePicker Date="{Binding DateOfBirth}" />
+
+        <Entry Placeholder="Owner name" Text="{Binding OwnerName}" />
+        <Entry Placeholder="Owner contact" Text="{Binding OwnerContact}" Keyboard="Telephone" />
+
         <Button Text="Save" Command="{Binding SavePetCommand}" />
+
         <CollectionView ItemsSource="{Binding Pets}" HeightRequest="200">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:PetDto">
                     <Label Text="{Binding Name}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>

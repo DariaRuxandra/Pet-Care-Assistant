@@ -11,27 +11,36 @@ public partial class PetListPage : ContentPage
 		InitializeComponent();
 		BindingContext = vm;
 
-        // Use the ViewModel collection (async-aware) as the Picker ItemsSource
-        BreedPicker.ItemsSource = vm.DogBreeds;
-		BreedPicker.ItemDisplayBinding = new Binding("Breed");
-
-		BreedPicker.SelectedIndexChanged += BreedPicker_SelectedIndexChanged;
+        // Resolve controls by name at runtime to avoid missing generated field errors
+        var picker = this.FindByName<Picker>("BreedPicker");
+        if (picker != null)
+        {
+            picker.ItemsSource = vm.DogBreeds;
+            picker.ItemDisplayBinding = new Binding("Breed");
+            picker.SelectedIndexChanged += BreedPicker_SelectedIndexChanged;
+        }
 	}
 
 	private void BreedPicker_SelectedIndexChanged(object? sender, System.EventArgs e)
 	{
-		if (BreedPicker.SelectedItem is DogBreed selected)
+        var picker = sender as Picker ?? this.FindByName<Picker>("BreedPicker");
+        var label = this.FindByName<Label>("SelectedBreedLabel");
+
+		if (picker?.SelectedItem is DogBreed selected && label != null)
 		{
-			SelectedBreedLabel.Text = $"Selected: {selected.Breed} — {selected.Origin}";
+			label.Text = $"Selected: {selected.Breed} — {selected.Origin}";
 		}
 	}
 
 	private void BreedsCollection_SelectionChanged(object? sender, SelectionChangedEventArgs e)
 	{
+        var picker = this.FindByName<Picker>("BreedPicker");
+        var label = this.FindByName<Label>("SelectedBreedLabel");
+
 		if (e.CurrentSelection?.FirstOrDefault() is DogBreed selected)
 		{
-			SelectedBreedLabel.Text = $"Selected: {selected.Breed} — {selected.Origin}";
-			BreedPicker.SelectedItem = selected;
+			if (label != null) label.Text = $"Selected: {selected.Breed} — {selected.Origin}";
+            if (picker != null) picker.SelectedItem = selected;
 		}
 	}
 }

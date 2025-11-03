@@ -3,22 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pet_Care_Assistant.Views.PetListPage"
              Title="PetListPage">
-    <VerticalStackLayout>
-        <Label Text="Choose a dog breed from the list below:" FontAttributes="Bold" />
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="8">
 
-        <Picker x:Name="BreedPicker" Title="Choose breed" />
+            <Label Text="Pet form" FontAttributes="Bold" FontSize="18" />
 
-        <Label x:Name="SelectedBreedLabel" Text="Selected: none" />
+            <!-- Fields that match PetDto.cs -->
+            <Entry Placeholder="Name" Text="{Binding Name}" />
+            <Entry Placeholder="Species" Text="{Binding Species}" />
+            <Entry Placeholder="Breed" Text="{Binding Breed}" />
+            <Entry Placeholder="Owner name" Text="{Binding OwnerName}" />
+            <Entry Placeholder="Owner contact" Text="{Binding OwnerContact}" Keyboard="Telephone" />
 
-        
-        <!-- aici e o functionalitate ce imi afiseaza toate rasele de caini extrase din JSON. Este legata din HomeViewModel.cs -> cu MVVM-->
-        
-        <!--<CollectionView ItemsSource="{Binding DogBreeds}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding Breed}"></Label>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>-->
-    </VerticalStackLayout>
+            <HorizontalStackLayout VerticalOptions="Center" Spacing="8">
+                <Label Text="Age:" VerticalOptions="Center" />
+                <Stepper Minimum="0" Maximum="50"
+                         Value="{Binding Age, Mode=TwoWay}" />
+                <Label Text="{Binding Age, StringFormat='{}{0} years'}" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Label Text="Date of birth" />
+            <DatePicker Date="{Binding DateOfBirth, Mode=TwoWay}" />
+
+            <Button Text="Save" Command="{Binding SavePetCommand}" />
+
+            <!-- aici e o functionalitate ce imi afiseaza toate rasele de caini extrase din JSON. Este legata din HomeViewModel.cs -> cu MVVM-->
+            <!--<CollectionView ItemsSource="{Binding DogBreeds}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Breed}"></Label>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+
+            <!-- Optional: list existing pets -->
+            <Label Text="Saved pets" FontAttributes="Bold" Margin="0,12,0,0" />
+            <CollectionView ItemsSource="{Binding Pets}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Text="{Binding Species}" FontSize="12" />
+                                <Label Text="{Binding Breed}" FontSize="12" />
+                            </StackLayout>
+                            <Label Grid.Column="1" Text="{Binding Age}" VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Choose a dog breed from the list below:" FontAttributes="Bold" />
+
+            <Picker x:Name="BreedPicker" Title="Choose breed" />
+
+            <Label x:Name="SelectedBreedLabel" Text="Selected: none" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
