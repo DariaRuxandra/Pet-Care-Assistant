@@ -4,10 +4,10 @@ namespace Pet_Care_Assistant.Views;
 
 public partial class PetFormPage : ContentPage
 {
-    public PetFormPage()
+    public PetFormPage(PetFormViewModel vm)
     {
         InitializeComponent();
-        //BindingContext = vm;
-        BindingContext = new PetFormViewModel();
+        BindingContext = vm;
+        //BindingContext = new PetFormViewModel();
     }
 }

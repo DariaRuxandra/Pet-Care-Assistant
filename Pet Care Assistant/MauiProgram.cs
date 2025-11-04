@@ -32,10 +32,10 @@ namespace Pet_Care_Assistant
                 options.UseSqlite($"Data Source={dbPath}"));
 
             builder.Services.AddSingleton<HomeViewModel>();
-            builder.Services.AddSingleton<PetListPage>();
+            builder.Services.AddTransient<PetListPage>();
             builder.Services.AddSingleton<DogBreedService>();
             builder.Services.AddTransient<Views.PetFormPage>();
-            builder.Services.AddTransient<ViewModels.PetFormViewModel>();
+            builder.Services.AddSingleton<ViewModels.PetFormViewModel>();
             builder.Services.AddSingleton<SqliteConnectionFactory>();
 
             var app = builder.Build();

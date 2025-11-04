@@ -8,22 +8,34 @@
 
             <Label Text="Pet form" FontAttributes="Bold" FontSize="18" />
 
-            <!-- Fields that match PetDto.cs -->
             <Entry Placeholder="Name" Text="{Binding Name}" />
-            <Entry Placeholder="Species" Text="{Binding Species}" />
-            <Entry Placeholder="Breed" Text="{Binding Breed}" />
+            <!--<Entry Placeholder="Species" Text="{Binding Species}" />-->
+            <!--<Entry Placeholder="Breed" Text="{Binding Breed}" />-->
+
+            <Label Text="Choose a dog breed from the list below:" FontAttributes="Bold" />
+
+            <!--<Picker x:Name="BreedPicker" Title="Choose breed" />
+
+            <Label x:Name="SelectedBreedLabel" Text="Selected: none" />-->
+
+            <Picker 
+                Title="Choose breed"
+                ItemsSource="{Binding DogBreeds}"
+                ItemDisplayBinding="{Binding Breed}"
+                SelectedItem="{Binding SelectedBreed}" />
+
+            <Label Text="{Binding SelectedBreed.Breed, StringFormat='Selected: {0}'}" />
+
             <Entry Placeholder="Owner name" Text="{Binding OwnerName}" />
             <Entry Placeholder="Owner contact" Text="{Binding OwnerContact}" Keyboard="Telephone" />
 
-            <HorizontalStackLayout VerticalOptions="Center" Spacing="8">
-                <Label Text="Age:" VerticalOptions="Center" />
-                <Stepper Minimum="0" Maximum="50"
-                         Value="{Binding Age, Mode=TwoWay}" />
-                <Label Text="{Binding Age, StringFormat='{}{0} years'}" VerticalOptions="Center" />
-            </HorizontalStackLayout>
+           
+
 
             <Label Text="Date of birth" />
             <DatePicker Date="{Binding DateOfBirth, Mode=TwoWay}" />
+
+            <Label Text="{Binding AgeDisplay}" FontAttributes="Bold" />
 
             <Button Text="Save" Command="{Binding SavePetCommand}" />
 
@@ -37,7 +49,7 @@
             </CollectionView>-->
 
             <!-- Optional: list existing pets -->
-            <Label Text="Saved pets" FontAttributes="Bold" Margin="0,12,0,0" />
+            <!--<Label Text="Saved pets" FontAttributes="Bold" Margin="0,12,0,0" />
             <CollectionView ItemsSource="{Binding Pets}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -55,14 +67,9 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
 
-            <Label Text="Choose a dog breed from the list below:" FontAttributes="Bold" />
-
-            <Picker x:Name="BreedPicker" Title="Choose breed" />
-
-            <Label x:Name="SelectedBreedLabel" Text="Selected: none" />
-
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

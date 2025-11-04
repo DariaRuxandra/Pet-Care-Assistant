@@ -22,6 +22,22 @@ namespace Pet_Care_Assistant.Services
             return breeds;
         }
 
+        public async Task<List<DogBreed>> GetDogBreedsAsync()
+        {
+            using var client = new HttpClient();
+
+            try
+            {
+                var wrapper = await client.GetFromJsonAsync<DogBreedsResponse>(Url);
+                return wrapper?.DogBreeds ?? new List<DogBreed>();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("❌ Error fetching breeds: " + ex.Message);
+                return new List<DogBreed>();
+            }
+        }
+
         private class DogBreedsResponse
         {
             [System.Text.Json.Serialization.JsonPropertyName("dogBreeds")]

@@ -6,12 +6,14 @@ namespace Pet_Care_Assistant.Views;
 
 public partial class PetListPage : ContentPage
 {
-	public PetListPage(HomeViewModel vm)
+
+
+	public PetListPage(PetFormViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = vm;
+        BindingContext = vm;
+		//BindingContext = new PetFormViewModel();
 
-        // Resolve controls by name at runtime to avoid missing generated field errors
         var picker = this.FindByName<Picker>("BreedPicker");
         if (picker != null)
         {
