@@ -35,7 +35,7 @@
             <Label Text="Date of birth" />
             <DatePicker Date="{Binding DateOfBirth, Mode=TwoWay}" />
 
-            <Label Text="{Binding AgeDisplay}" FontAttributes="Bold" />
+            <!--<Label Text="{Binding AgeDisplay}" FontAttributes="Bold" />-->
 
             <Button Text="Save" Command="{Binding SavePetCommand}" />
 

@@ -34,8 +34,8 @@ namespace Pet_Care_Assistant
             builder.Services.AddSingleton<HomeViewModel>();
             builder.Services.AddTransient<PetListPage>();
             builder.Services.AddSingleton<DogBreedService>();
-            builder.Services.AddTransient<Views.PetFormPage>();
-            builder.Services.AddSingleton<ViewModels.PetFormViewModel>();
+            builder.Services.AddTransient<PetFormPage>();
+            builder.Services.AddSingleton<PetFormViewModel>();
             builder.Services.AddSingleton<SqliteConnectionFactory>();
 
             var app = builder.Build();

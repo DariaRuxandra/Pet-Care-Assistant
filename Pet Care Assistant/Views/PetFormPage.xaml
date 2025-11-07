@@ -34,13 +34,16 @@
                     <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
                         <VerticalStackLayout>
                             <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
-                            <Label Text="{Binding Species}" />
+                            <!--<Label Text="{Binding Species}" />-->
                             <Label Text="{Binding Breed}" />
                             <HorizontalStackLayout>
                                 <Label Text="Age: " />
-                                <Label Text="{Binding Age}" />
+                                <Label Text="{Binding AgeDisplayDetailed}" />
                             </HorizontalStackLayout>
-                            <HorizontalStackLayout>
+
+                           
+
+                                <HorizontalStackLayout>
                                 <Label Text="Owner: " />
                                 <Label Text="{Binding OwnerName}" />
                             </HorizontalStackLayout>

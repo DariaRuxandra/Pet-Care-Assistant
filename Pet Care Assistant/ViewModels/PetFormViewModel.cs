@@ -190,7 +190,7 @@ namespace Pet_Care_Assistant.ViewModels
 
             // Load stored pets for testing
             PetsList.Add(new Pet(1, "Buddy", "Dog", "Golden Retriever", DateTime.Now.AddYears(-3), "Alice Smith", "0733628134"));
-            PetsList.Add(new Pet(2, "Victor", "Dog", "Bulldog", DateTime.Now.AddYears(-2), "Daria", "0733128134"));
+            PetsList.Add(new Pet(2, "Aki", "Dog", "Bulldog", DateTime.Now.AddYears(-2), "Daria", "0733128134"));
 
             _ = LoadDogBreedsAsync();
         }
@@ -199,6 +199,7 @@ namespace Pet_Care_Assistant.ViewModels
         partial void OnDateOfBirthChanged(DateTime value)
         {
             Age = CalculateAge(value);
+
             OnPropertyChanged(nameof(AgeDisplay));
         }
 
@@ -208,7 +209,16 @@ namespace Pet_Care_Assistant.ViewModels
             int result = today.Year - birthDate.Year;
             if (birthDate.Date > today.AddYears(-result)) result--;
             return Math.Max(0, result);
+
+            
         }
+
+        
+
+        //partial void OnAgeChanged(int value)
+        //{
+        //    OnPropertyChanged(nameof(AgeDisplayDetailed));
+        //}
 
         private async Task LoadDogBreedsAsync()
         {

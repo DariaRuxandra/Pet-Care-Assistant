@@ -15,6 +15,7 @@ namespace Pet_Care_Assistant.Models
         public DateTime dateOfBirth { get; set; } = DateTime.Now;
         public string OwnerName { get; set; } = "";
         public string OwnerContact { get; set; } = "";
+        //public string AgeDisplayDetailed { get; set; } = "";
 
         public Pet(int id, string name, string species, string breed, DateTime dateOfBirth, string ownerName, string ownerContact)
         {
@@ -32,11 +33,31 @@ namespace Pet_Care_Assistant.Models
         {
             get
             {
+                //var today = DateTime.Today;
+                //var age = today.Year - dateOfBirth.Year;
+                //if (dateOfBirth.Date > today.AddYears(-age))
+                //    age--;
+                //return Math.Max(0, age);
+
+                dateOfBirth = dateOfBirth.Date; // ensure time component is zeroed
                 var today = DateTime.Today;
-                var age = today.Year - dateOfBirth.Year;
-                if (dateOfBirth.Date > today.AddYears(-age))
-                    age--;
-                return Math.Max(0, age);
+                //int years = today.Year - birthDate.Year;
+                //int months = today.Month - birthDate.Month;
+                int months = (today.Year - dateOfBirth.Year) * 12 + today.Month - dateOfBirth.Month;
+
+                return Math.Max(0, months);
+            }
+        }
+
+        public string AgeDisplayDetailed
+        {
+            get
+            {
+                int totalMonths = Age; // if Age stores months
+                int years = totalMonths / 12;
+                int months = totalMonths % 12;
+
+                return $"{years} year{(years == 1 ? "" : "s")}, {months} month{(months == 1 ? "" : "s")}";
             }
         }
 
