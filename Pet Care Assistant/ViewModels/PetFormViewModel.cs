@@ -172,6 +172,7 @@ namespace Pet_Care_Assistant.ViewModels
         [ObservableProperty] private string ownerContact = "";
         [ObservableProperty] private DogBreed? selectedBreed;
         [ObservableProperty] private int age;
+        [ObservableProperty] private string petPhotoPath = "";
 
         // For displaying age in UI
         public string AgeDisplay => $"{Age} year{(Age == 1 ? "" : "s")} old";
@@ -183,13 +184,17 @@ namespace Pet_Care_Assistant.ViewModels
         public ObservableCollection<Pet> PetsList { get; } = new();
 
         public IRelayCommand SavePetCommand { get; }
+        public IAsyncRelayCommand PickPhotoCommand { get; }
 
         public PetFormViewModel()
         {
             SavePetCommand = new RelayCommand(SavePet);
+            PickPhotoCommand = new AsyncRelayCommand(PickPhotoAsync);
 
             // Load stored pets for testing
-            PetsList.Add(new Pet(1, "Buddy", "Dog", "Golden Retriever", DateTime.Now.AddYears(-3), "Alice Smith", "0733628134"));
+            Pet pet1 = new Pet(1, "Buddy", "Dog", "Golden Retriever", DateTime.Now.AddYears(-3), "Alice Smith", "0733628134");
+            pet1.PhotoPath = "C:\\Users\\daria\\source\\repos\\Pet Care Assistant\\Pet Care Assistant\\Images\\dog1.jpg";
+            PetsList.Add(pet1);
             PetsList.Add(new Pet(2, "Aki", "Dog", "Bulldog", DateTime.Now.AddYears(-2), "Daria", "0733128134"));
 
             _ = LoadDogBreedsAsync();
@@ -248,7 +253,10 @@ namespace Pet_Care_Assistant.ViewModels
                 dateOfBirth: DateOfBirth,
                 ownerName: OwnerName,
                 ownerContact: OwnerContact
-            );
+            )
+            {
+                PhotoPath = petPhotoPath
+            };
 
             PetsList.Add(newPet);
 
@@ -260,5 +268,39 @@ namespace Pet_Care_Assistant.ViewModels
 
             App.Current.MainPage.DisplayAlert("Success", $"{newPet.Name} added!", "OK");
         }
+
+        private async Task PickPhotoAsync()
+        {
+            try
+            {
+                var result = await FilePicker.PickAsync(new PickOptions
+                {
+                    PickerTitle = "Select a pet photo",
+                    FileTypes = FilePickerFileType.Images
+                });
+
+                if (result != null)
+                {
+                    // Create an "Images" folder in the app data directory
+                    string imagesDir = Path.Combine(FileSystem.AppDataDirectory, "Images");
+                    Directory.CreateDirectory(imagesDir);
+
+                    string targetFile = Path.Combine(imagesDir, result.FileName);
+
+                    using (var sourceStream = await result.OpenReadAsync())
+                    using (var destinationStream = File.Create(targetFile))
+                    {
+                        await sourceStream.CopyToAsync(destinationStream);
+                    }
+
+                    PetPhotoPath = targetFile;
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", $"Could not load photo: {ex.Message}", "OK");
+            }
+        }
     }
 }
+

@@ -37,6 +37,19 @@
 
             <!--<Label Text="{Binding AgeDisplay}" FontAttributes="Bold" />-->
 
+            <Label Text="Pet photo" FontAttributes="Bold" Margin="0,10,0,0" />
+
+            <Image
+                Source="{Binding PetPhotoPath}"
+                HeightRequest="200"
+                Aspect="AspectFill"
+                BackgroundColor="LightGray"
+                Margin="0,5" />
+
+            <Button
+                Text="Upload Photo"
+                Command="{Binding PickPhotoCommand}" />
+
             <Button Text="Save" Command="{Binding SavePetCommand}" />
 
             <!-- aici e o functionalitate ce imi afiseaza toate rasele de caini extrase din JSON. Este legata din HomeViewModel.cs -> cu MVVM-->

@@ -52,6 +52,12 @@
                                 <Label Text="{Binding OwnerContact}" />
                             </HorizontalStackLayout>
 
+                            <Image Source="{Binding PhotoPath}"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFill"
+                               Margin="0,5,10,0"
+                               BackgroundColor="LightGray" />
 
                         </VerticalStackLayout>
                     </Frame>

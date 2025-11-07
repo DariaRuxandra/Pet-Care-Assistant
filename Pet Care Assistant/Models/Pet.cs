@@ -16,6 +16,7 @@ namespace Pet_Care_Assistant.Models
         public string OwnerName { get; set; } = "";
         public string OwnerContact { get; set; } = "";
         //public string AgeDisplayDetailed { get; set; } = "";
+        public string? PhotoPath { get; set; } = "";
 
         public Pet(int id, string name, string species, string breed, DateTime dateOfBirth, string ownerName, string ownerContact)
         {
