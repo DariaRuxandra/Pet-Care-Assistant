@@ -281,7 +281,7 @@ namespace Pet_Care_Assistant.ViewModels
 
                 if (result != null)
                 {
-                    // Create an "Images" folder in the app data directory
+                
                     string imagesDir = Path.Combine(FileSystem.AppDataDirectory, "Images");
                     Directory.CreateDirectory(imagesDir);
 

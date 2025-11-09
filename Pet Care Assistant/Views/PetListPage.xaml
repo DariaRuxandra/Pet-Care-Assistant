@@ -3,20 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pet_Care_Assistant.Views.PetListPage"
              Title="Add a pet">
-    <ScrollView>
+    <!--<ScrollView>
         <VerticalStackLayout Padding="16" Spacing="8">
 
             <Label Text="Pet form" FontAttributes="Bold" FontSize="18" />
 
             <Entry Placeholder="Name" Text="{Binding Name}" />
-            <!--<Entry Placeholder="Species" Text="{Binding Species}" />-->
-            <!--<Entry Placeholder="Breed" Text="{Binding Breed}" />-->
+            --><!--<Entry Placeholder="Species" Text="{Binding Species}" />-->
+            <!--<Entry Placeholder="Breed" Text="{Binding Breed}" />--><!--
 
             <Label Text="Choose a dog breed from the list below:" FontAttributes="Bold" />
 
-            <!--<Picker x:Name="BreedPicker" Title="Choose breed" />
+            --><!--<Picker x:Name="BreedPicker" Title="Choose breed" />
 
-            <Label x:Name="SelectedBreedLabel" Text="Selected: none" />-->
+            <Label x:Name="SelectedBreedLabel" Text="Selected: none" />--><!--
 
             <Picker 
                 Title="Choose breed"
@@ -35,7 +35,7 @@
             <Label Text="Date of birth" />
             <DatePicker Date="{Binding DateOfBirth, Mode=TwoWay}" />
 
-            <!--<Label Text="{Binding AgeDisplay}" FontAttributes="Bold" />-->
+            --><!--<Label Text="{Binding AgeDisplay}" FontAttributes="Bold" />--><!--
 
             <Label Text="Pet photo" FontAttributes="Bold" Margin="0,10,0,0" />
 
@@ -52,7 +52,7 @@
 
             <Button Text="Save" Command="{Binding SavePetCommand}" />
 
-            <!-- aici e o functionalitate ce imi afiseaza toate rasele de caini extrase din JSON. Este legata din HomeViewModel.cs -> cu MVVM-->
+            --><!-- aici e o functionalitate ce imi afiseaza toate rasele de caini extrase din JSON. Este legata din HomeViewModel.cs -> cu MVVM-->
             <!--<CollectionView ItemsSource="{Binding DogBreeds}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -80,9 +80,140 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>-->
+            </CollectionView>--><!--
 
             
+        </VerticalStackLayout>
+    </ScrollView>-->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- Header -->
+            <Label Text="🐾 Add Your Pet"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#222"
+                   HorizontalOptions="Center" />
+
+            <!-- Card -->
+            <Frame BackgroundColor="White"
+                   Padding="20"
+                   CornerRadius="15"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <!-- Pet Name -->
+                    <Label Text="Pet Name" FontAttributes="Bold" TextColor="#444" />
+                    <Frame BackgroundColor="#F3F3F3"
+                           Padding="10"
+                           CornerRadius="10"
+                           HasShadow="False">
+                        <Entry Placeholder="Enter pet name"
+                               Text="{Binding Name}"
+                               HeightRequest="40"
+                               BackgroundColor="Transparent"
+                               TextColor="#222"
+                               PlaceholderColor="#999" />
+                    </Frame>
+
+                    <!-- Breed -->
+                    <Label Text="Dog Breed" FontAttributes="Bold" TextColor="#444" />
+
+                    <Frame Padding="0"
+                           CornerRadius="10"
+                           BackgroundColor="#F3F3F3"
+                           HasShadow="False"
+                           HeightRequest="45">
+                        <!--<Picker 
+                            Title="Select breed"
+                            ItemsSource="{Binding DogBreeds}"
+                            ItemDisplayBinding="{Binding Breed}"
+                            SelectedItem="{Binding SelectedBreed}"
+                            FontSize="14"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Fill" />-->
+                        <Picker 
+                            Title="Choose breed"
+                            ItemsSource="{Binding DogBreeds}"
+                            ItemDisplayBinding="{Binding Breed}"
+                            SelectedItem="{Binding SelectedBreed}" 
+                            FontSize="14"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Fill"
+                            />
+                    </Frame>
+
+                    <Label Text="{Binding SelectedBreed.Breed, StringFormat='Selected: {0}'}"
+                           FontSize="13"
+                           TextColor="#666" />
+
+                    <!-- Owner Info -->
+                    <Label Text="Owner Information" FontAttributes="Bold" TextColor="#444" Margin="0,10,0,0" />
+
+                    <Frame BackgroundColor="#F3F3F3" Padding="10" CornerRadius="10" HasShadow="False">
+                        <Entry Placeholder="Owner name"
+                               Text="{Binding OwnerName}"
+                               HeightRequest="40"
+                               BackgroundColor="Transparent"
+                               TextColor="#222"
+                               PlaceholderColor="#999" />
+                    </Frame>
+
+                    <Frame BackgroundColor="#F3F3F3" Padding="10" CornerRadius="10" HasShadow="False">
+                        <Entry Placeholder="Owner contact"
+                               Text="{Binding OwnerContact}"
+                               Keyboard="Telephone"
+                               HeightRequest="40"
+                               BackgroundColor="Transparent"
+                               TextColor="#222"
+                               PlaceholderColor="#999" />
+                    </Frame>
+
+                    <!-- Date of Birth -->
+                    <Label Text="Date of Birth" FontAttributes="Bold" TextColor="#444" Margin="0,10,0,0" />
+                    <Frame Padding="0"
+                           CornerRadius="10"
+                           BackgroundColor="#F3F3F3"
+                           HasShadow="False"
+                           HeightRequest="45">
+                        <DatePicker Date="{Binding DateOfBirth, Mode=TwoWay}"
+                                    FontSize="14"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Fill" />
+                    </Frame>
+
+                    <!-- Photo Upload -->
+                    <Label Text="Pet Photo" FontAttributes="Bold" TextColor="#444" Margin="0,10,0,0" />
+
+                    <Frame Padding="0"
+                           BackgroundColor="#EEE"
+                           CornerRadius="10"
+                           HasShadow="False"
+                           HeightRequest="200">
+                        <Image
+                            Source="{Binding PetPhotoPath}"
+                            Aspect="AspectFill"
+                            HeightRequest="200" />
+                    </Frame>
+
+                    <Button Text="Upload Photo"
+                            Command="{Binding PickPhotoCommand}"
+                            BackgroundColor="#2196F3"
+                            TextColor="White"
+                            CornerRadius="10"
+                            HeightRequest="45" />
+
+                    <!-- Save -->
+                    <Button Text="Save Pet"
+                            Command="{Binding SavePetCommand}"
+                            BackgroundColor="#4CAF50"
+                            TextColor="White"
+                            CornerRadius="10"
+                            HeightRequest="45" />
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
