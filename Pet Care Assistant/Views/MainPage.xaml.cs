@@ -7,13 +7,21 @@ namespace Pet_Care_Assistant.Views
         public MainPage()
         {
             InitializeComponent();
-            //BindingContext = new PetFormViewModel();
-
         }
 
-        private void OnGoToPetProfileClicked(object sender, EventArgs e)
+        private async void OnGoToPetProfileClicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("PetListPage");
+            await Shell.Current.GoToAsync("PetListPage");
+        }
+
+        private async void OnGoToAppointmentsClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("AppointmentsPage");
+        }
+
+        private async void OnGoToTreatmentsClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///ServiciesPage");
         }
     }
 }

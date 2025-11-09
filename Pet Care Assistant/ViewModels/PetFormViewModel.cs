@@ -158,6 +158,7 @@ using Pet_Care_Assistant.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Pet_Care_Assistant.ViewModels
 {
@@ -173,6 +174,15 @@ namespace Pet_Care_Assistant.ViewModels
         [ObservableProperty] private DogBreed? selectedBreed;
         [ObservableProperty] private int age;
         [ObservableProperty] private string petPhotoPath = "";
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FilteredPetsList))]
+        private string searchText = "";
+
+        public IEnumerable<Pet> FilteredPetsList =>
+        string.IsNullOrWhiteSpace(SearchText)
+            ? PetsList
+            : PetsList.Where(p => p.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
 
         // For displaying age in UI
         public string AgeDisplay => $"{Age} year{(Age == 1 ? "" : "s")} old";

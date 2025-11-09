@@ -3,51 +3,106 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Pet_Care_Assistant.Views.MainPage"
-    Title="My Pets">
+    Title="Pet Care Assistant"
+    BackgroundColor="#F5F5F5">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Settings" Clicked="OnGoToPetProfileClicked" Order="Secondary"/>
-    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <Grid>
+        <VerticalStackLayout Padding="10,5,10,20" Spacing="10">
 
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Label 
-            Text="Pagina de start"
-            FontAttributes="Bold"
-            HorizontalOptions="Center" />
+        
+            <Image Source="dog1.png"
+                   HeightRequest="{OnPlatform WinUI=120, Android=90, iOS=90}"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
 
-        <Button
-            Text="Get started"
-            Clicked="OnGoToPetProfileClicked"
-            HorizontalOptions="Center" />
-
-        <!-- ✅ MAUI CollectionView for your PetsList -->
-        <!--<CollectionView ItemsSource="{Binding PetsList}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
-                            <Label Text="{Binding Type}" />
-                            <Label Text="{Binding Breed}" />
-                            <HorizontalStackLayout>
-                                <Label Text="Age: " />
-                                <Label Text="{Binding Age}" />
-                            </HorizontalStackLayout>
-                            <HorizontalStackLayout>
-                                <Label Text="Owner: " />
-                                <Label Text="{Binding OwnerName}" />
-                            </HorizontalStackLayout>
-                            <HorizontalStackLayout>
-                                <Label Text="Contact: " />
-                                <Label Text="{Binding OwnerContact}" />
-                            </HorizontalStackLayout>
+            <Label Text="Welcome to Pet Care Assistant!"
+                   FontAttributes="Bold"
+                   FontSize="{OnPlatform WinUI=26, Android=22, iOS=22}"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#333"/>
 
 
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>-->
-    </VerticalStackLayout>
+            <!--<Frame Padding="0" HasShadow="True" CornerRadius="20" IsClippedToBounds="True">
+                <Image Source="clinic_logo.png"
+                   Aspect="AspectFit"
+                   HeightRequest="{OnPlatform WinUI=220, Android=180, iOS=180}"
+                   HorizontalOptions="Fill" />
+            </Frame>-->
+
+            <Frame Padding="0" HasShadow="True" CornerRadius="20" IsClippedToBounds="True">
+                <Image Source="clinic_logo.png"
+                   Aspect="AspectFit"
+                   HeightRequest="{OnPlatform WinUI=220, Android=180, iOS=180}"
+                   HorizontalOptions="Center" />
+            </Frame>
+
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Quick Actions"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="#444"
+                       Margin="0,0,0,5"/>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10" RowSpacing="10">
+                    <Button Text="🐾 View Pets"
+                            Clicked="OnGoToPetProfileClicked"
+                            BackgroundColor="#4CAF50"
+                            TextColor="White"
+                            CornerRadius="15"
+                            Padding="10"
+                            Grid.Column="0"/>
+
+                    <Button Text="🩺 Appointments"
+                            Clicked="OnGoToAppointmentsClicked"
+                            BackgroundColor="#2196F3"
+                            TextColor="White"
+                            CornerRadius="15"
+                            Padding="10"
+                            Grid.Column="1"/>
+
+                    <Button Text="💊 Treatments"
+                            Clicked="OnGoToTreatmentsClicked"
+                            BackgroundColor="#FF9800"
+                            TextColor="White"
+                            CornerRadius="15"
+                            Padding="10"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="1"/>
+                </Grid>
+            </VerticalStackLayout>
+
+            <Frame BackgroundColor="White"
+                   CornerRadius="15"
+                   Padding="15"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Next Appointment"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           TextColor="#333"/>
+                    <Label Text="Tomorrow at 10:30 AM — Buddy (Vaccination)"
+                           FontSize="14"
+                           TextColor="#666"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="12"
+                   BackgroundColor="#E8F5E9"
+                   CornerRadius="10">
+                <Label Text="💡 Tip: Keep your pet hydrated and walk them daily!"
+                       FontSize="13"
+                       TextColor="#444"/>
+            </Frame>
+
+            <Label Text="© 2025 Pet Care Assistant Clinic"
+                   FontSize="12"
+                   HorizontalOptions="Center"
+                   TextColor="#888"
+                   Margin="0,10,0,20"/>
+        </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 
 </ContentPage>
