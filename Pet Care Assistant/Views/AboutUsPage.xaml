@@ -30,7 +30,7 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Misiunea Noastră" Style="{StaticResource SectionTitleStyle}" />
                     <Label>
-                        Suntem o clinică dedicată excelenței în medicina veterinară. Misiunea noastră este să oferim cea mai înaltă calitate a îngrijirii medicale, redând sănătatea și oferind o nouă șansă la viață companionilor dumneavoastră necuvântători. La Pet Care Assistant, fiecare pacient este tratat cu empatie și profesionalism, ca un membru al familiei.
+                        Suntem o clinică dedicată excelenței în medicina veterinară. Misiunea noastră este să oferim cea mai înaltă calitate a îngrijirii medicale in toate centrele noastre, redând sănătatea și oferind o nouă șansă la viață companionilor dumneavoastră necuvântători. Aici, fiecare pacient este tratat cu empatie și profesionalism, ca un membru al familiei.
                     </Label>
                 </VerticalStackLayout>
             </Frame>
