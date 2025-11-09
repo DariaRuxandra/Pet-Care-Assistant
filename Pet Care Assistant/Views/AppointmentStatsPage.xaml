@@ -1,0 +1,26 @@
+<!-- AppointmentStatsPage.xaml -->
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    x:Class="Pet_Care_Assistant.Views.AppointmentStatsPage"
+    Title="Appointment Statistics">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+            <Label Text="📊 Appointments per Day" 
+                   FontSize="20"
+                   HorizontalOptions="Center" />
+
+            <microcharts:ChartView HeightRequest="200" 
+                                   Chart="{Binding AppointmentsPerDayChart}" />
+
+            <Label Text="🐶 Dogs per Clinic"
+                   FontSize="20"
+                   HorizontalOptions="Center" />
+
+            <microcharts:ChartView HeightRequest="200" 
+                                   Chart="{Binding DogsPerClinicChart}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

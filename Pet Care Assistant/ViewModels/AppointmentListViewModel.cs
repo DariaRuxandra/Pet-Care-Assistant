@@ -11,13 +11,9 @@ namespace Pet_Care_Assistant.ViewModels
     {
         private readonly AppointmentFormViewModel _sharedVM;
 
-        // All appointments come from shared ViewModel
         public ObservableCollection<Appointment> AllAppointments => _sharedVM.Appointments;
-
-        // Filtered list actually shown in the UI
         public ObservableCollection<Appointment> FilteredAppointments { get; } = new();
 
-        // Picker options
         public ObservableCollection<string> FilterOptions { get; } = new()
         {
             "All",
@@ -35,18 +31,13 @@ namespace Pet_Care_Assistant.ViewModels
         {
             _sharedVM = sharedVM;
             ApplyFilterCommand = new RelayCommand(ApplyFilter);
-
-            // Populate initial filtered list
             ApplyFilter();
-
-            // Subscribe to collection changes so the list updates automatically
             _sharedVM.Appointments.CollectionChanged += (_, __) => ApplyFilter();
         }
 
         private void ApplyFilter()
         {
             FilteredAppointments.Clear();
-
             var items = AllAppointments.AsEnumerable();
 
             switch (SelectedFilter)
@@ -54,20 +45,16 @@ namespace Pet_Care_Assistant.ViewModels
                 case "Today":
                     items = items.Where(a => a.Date.Date == DateTime.Today);
                     break;
-
                 case "Upcoming":
                     items = items.Where(a => a.Date.Date > DateTime.Today);
                     break;
-
                 case "Clinic (A-Z)":
                     items = items.OrderBy(a => a.ClinicName);
                     break;
-
                 case "Pet (A-Z)":
                     items = items.OrderBy(a => a.PetName);
                     break;
-
-                default: // "All"
+                default:
                     items = items.OrderBy(a => a.Date);
                     break;
             }

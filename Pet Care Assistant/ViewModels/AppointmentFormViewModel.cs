@@ -12,10 +12,21 @@ namespace Pet_Care_Assistant.ViewModels
         [ObservableProperty] private string petName = "";
         [ObservableProperty] private string clinicName = "";
         [ObservableProperty] private DateTime date = DateTime.Today;
-        [ObservableProperty] private TimeSpan time = DateTime.Now.TimeOfDay;  // 🕒 New property
+        [ObservableProperty] private TimeSpan time = DateTime.Now.TimeOfDay;
         [ObservableProperty] private string reason = "";
         [ObservableProperty] private bool sendReminder = false;
 
+        // ✅ Dropdown list for available clinics
+        public ObservableCollection<string> AvailableClinics { get; } = new()
+        {
+            "Happy Paws Vet",
+            "Animal Health Center",
+            "Healthy Pets Clinic",
+            "Downtown Vet",
+            "PetCare Plus"
+        };
+
+        // ✅ Appointment storage
         public ObservableCollection<Appointment> Appointments { get; } = new();
 
         public IAsyncRelayCommand SaveAppointmentCommand { get; }
@@ -28,7 +39,7 @@ namespace Pet_Care_Assistant.ViewModels
             ClearFormCommand = new RelayCommand(ClearForm);
             CancelCommand = new AsyncRelayCommand(CancelAppointmentAsync);
 
-            // Example data
+            // ✅ Sample data for testing
             Appointments.Add(new Appointment
             {
                 PetName = "Buddy",
@@ -44,6 +55,30 @@ namespace Pet_Care_Assistant.ViewModels
                 Date = DateTime.Today.AddDays(5).AddHours(15),
                 Reason = "Check-up"
             });
+
+            Appointments.Add(new Appointment
+            {
+                PetName = "Charlie",
+                ClinicName = "Healthy Pets Clinic",
+                Date = DateTime.Today.AddDays(1).AddHours(9),
+                Reason = "Grooming"
+            });
+
+            Appointments.Add(new Appointment
+            {
+                PetName = "Bella",
+                ClinicName = "Downtown Vet",
+                Date = DateTime.Today.AddDays(3).AddHours(14),
+                Reason = "Follow-up Exam"
+            });
+
+            Appointments.Add(new Appointment
+            {
+                PetName = "Max",
+                ClinicName = "PetCare Plus",
+                Date = DateTime.Today.AddDays(-1).AddHours(11),
+                Reason = "Ear cleaning"
+            });
         }
 
         private async Task<bool> SaveAppointmentAsync()
@@ -58,7 +93,7 @@ namespace Pet_Care_Assistant.ViewModels
 
                 if (string.IsNullOrWhiteSpace(ClinicName))
                 {
-                    await App.Current.MainPage.DisplayAlert("Validation Error", "Please enter the clinic name.", "OK");
+                    await App.Current.MainPage.DisplayAlert("Validation Error", "Please select or enter a clinic name.", "OK");
                     return false;
                 }
 
@@ -68,7 +103,6 @@ namespace Pet_Care_Assistant.ViewModels
                     return false;
                 }
 
-                // Combine date and time
                 var appointmentDateTime = Date.Date + time;
 
                 if (appointmentDateTime < DateTime.Now)
@@ -120,7 +154,7 @@ namespace Pet_Care_Assistant.ViewModels
             PetName = "";
             ClinicName = "";
             Date = DateTime.Today;
-            Time = DateTime.Now.TimeOfDay;  // Reset time
+            Time = DateTime.Now.TimeOfDay;
             Reason = "";
             SendReminder = false;
         }

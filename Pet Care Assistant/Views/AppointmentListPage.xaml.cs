@@ -31,11 +31,14 @@ namespace Pet_Care_Assistant.Views
             }
         }
 
-    /*    private async void OnViewStatsClicked(object sender, EventArgs e)
+        private async void OnViewStatsClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(AppointmentStatsPage));
+            var statsVM = new AppointmentStatsViewModel(_sharedVM.Appointments);
+            var statsPage = new AppointmentStatsPage(statsVM);
+            await Navigation.PushAsync(statsPage);
+
         }
-*/
+
         private async void OnAddAppointmentClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AppointmentFormPage(_sharedVM));
@@ -51,16 +54,17 @@ namespace Pet_Care_Assistant.Views
                     "Yes", "Cancel");
 
                 if (confirm)
-                { 
+                {
                     _sharedVM.Appointments.Remove(selectedAppointment);
                     await DisplayAlert("Done", "Appointment removed successfully!", "OK");
                 }
             }
         }
 
-        private async void OnScrollToTopClicked(object sender, EventArgs e)
+   /*     private async void OnScrollToTopClicked(object sender, EventArgs e)
         {
-            await (this.Content as ScrollView)?.ScrollToAsync(0, 0, true);
-        }
+            if (MainScrollView != null)
+                await MainScrollView.ScrollToAsync(0, 0, true);
+        }*/
     }
 }

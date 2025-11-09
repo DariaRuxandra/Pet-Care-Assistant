@@ -1,57 +1,54 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pet_Care_Assistant.Views.AppointmentListPage"
-             Title="Appointments">
+<ContentPage
+    x:Class="Pet_Care_Assistant.Views.AppointmentListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Appointments">
 
-    <VerticalStackLayout Padding="20" Spacing="15">
+    <ScrollView x:Name="MainScrollView">
+        <VerticalStackLayout Padding="20" Spacing="10">
 
-        <!-- Filter Section -->
-        <Label Text="Filter appointments by:" FontAttributes="Bold" />
-        <Picker Title="Select Filter"
-                ItemsSource="{Binding FilterOptions}"
-                SelectedItem="{Binding SelectedFilter}"
-                SelectedIndexChanged="OnFilterChanged" />
+            <Button Text="View Stats"
+                    Clicked="OnViewStatsClicked"
+                    HorizontalOptions="Center" />
 
-        <!-- Appointment List -->
-        <CollectionView ItemsSource="{Binding FilteredAppointments}"
-                        SelectionChanged="OnAppointmentSelected">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Margin="5" Padding="10" BorderColor="#cccccc">
-                        <VerticalStackLayout Spacing="5">
-                            <Label Text="{Binding PetName}" FontAttributes="Bold" />
-                            <Label Text="{Binding ClinicName}" />
-                            <Label Text="{Binding Date, StringFormat='{0:dd MMM yyyy, HH:mm}'}" />
-                            <Label Text="{Binding Reason}" FontAttributes="Italic" />
-                            <Button Text="Finish"
-                                    BackgroundColor="#ff6666"
-                                    TextColor="White"
-                                    Clicked="OnFinishAppointmentClicked"
-                                    CornerRadius="10" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <Button Text="Add Appointment"
+                    Clicked="OnAddAppointmentClicked"
+                    HorizontalOptions="Center" />
 
-        <!-- Buttons -->
-        <Button Text="Add Appointment"
-                BackgroundColor="#4CAF50"
-                TextColor="White"
-                Clicked="OnAddAppointmentClicked"
-                CornerRadius="10" />
+            <Picker Title="Filter by"
+                    ItemsSource="{Binding FilterOptions}"
+                    SelectedItem="{Binding SelectedFilter}"
+                    SelectedIndexChanged="OnFilterChanged"
+                    HorizontalOptions="Fill"
+                    Margin="0,10,0,10" />
 
-        <!--<Button Text="View Stats"
-                BackgroundColor="#2196F3"
-                TextColor="White"
-                Clicked="OnViewStatsClicked"
-                CornerRadius="10" />-->
+            <CollectionView
+                ItemsSource="{Binding FilteredAppointments}"
+                SelectionMode="Single"
+                SelectionChanged="OnAppointmentSelected">
 
-        <Button Text="Scroll to Top"
-                BackgroundColor="LightGray"
-                TextColor="Black"
-                Clicked="OnScrollToTopClicked"
-                CornerRadius="10" />
-    </VerticalStackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding PetName}" FontAttributes="Bold" />
+                                <Label Text="{Binding ClinicName}" />
+                                <Label Text="{Binding Date, StringFormat='{}{0:dd MMM yyyy, HH:mm}'}" />
+                                <Label Text="{Binding Reason}" FontAttributes="Italic" />
+                                <Button Text="Finish"
+                                        Clicked="OnFinishAppointmentClicked"
+                                        HorizontalOptions="End"
+                                        FontSize="12" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--<Button Text="Scroll to Top"
+                    Clicked="OnScrollToTopClicked"
+                    HorizontalOptions="Center"
+                    Margin="0,20,0,0" />-->
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

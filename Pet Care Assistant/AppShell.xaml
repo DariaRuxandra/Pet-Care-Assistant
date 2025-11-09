@@ -36,6 +36,11 @@
    Route="AppointmentFormPage" />
 
     <ShellContent
+    Title="Appointment Stats"
+    ContentTemplate="{DataTemplate local:AppointmentStatsPage}"
+    Route="AppointmentStatsPage" />
+
+    <ShellContent
           Title="Health Checker"
           ContentTemplate="{DataTemplate local:HealthCheckerPage}"
           Route="HealthCheckerPage" />

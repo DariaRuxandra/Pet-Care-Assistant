@@ -1,51 +1,46 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             x:Class="Pet_Care_Assistant.Views.AppointmentFormPage"
-             Title="Add Appointment">
+<ContentPage
+    x:Class="Pet_Care_Assistant.Views.AppointmentFormPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="New Appointment">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="20" Spacing="12">
 
-            <Label Text="Pet Name" FontAttributes="Bold" />
+            <Label Text="Pet Name" />
             <Entry Placeholder="Enter pet name"
                    Text="{Binding PetName}" />
 
-            <Label Text="Clinic Name" FontAttributes="Bold" />
-            <Entry Placeholder="Enter clinic name"
-                   Text="{Binding ClinicName}" />
+            <Label Text="Clinic" />
+            <!--  Dropdown picker for clinics -->
+            <Picker Title="Select Clinic"
+                    ItemsSource="{Binding AvailableClinics}"
+                    SelectedItem="{Binding ClinicName}" />
 
-            <Label Text="Appointment Date" FontAttributes="Bold" />
-            <DatePicker MinimumDate="{x:Static sys:DateTime.Today}"
-                        Date="{Binding Date}" />
+            <Label Text="Date" />
+            <DatePicker Date="{Binding Date}" />
 
-            <Label Text="Appointment Time" FontAttributes="Bold" />
+            <Label Text="Time" />
             <TimePicker Time="{Binding Time}" />
 
-            <Label Text="Reason" FontAttributes="Bold" />
-            <Editor Placeholder="Enter reason"
-                    AutoSize="TextChanges"
-                    HeightRequest="100"
-                    Text="{Binding Reason}" />
+            <Label Text="Reason" />
+            <Entry Placeholder="Reason for visit"
+                   Text="{Binding Reason}" />
 
-            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <HorizontalStackLayout Spacing="10">
                 <Label Text="Send Reminder?" VerticalOptions="Center" />
                 <Switch IsToggled="{Binding SendReminder}" />
             </HorizontalStackLayout>
 
             <Button Text="Save Appointment"
-                    Command="{Binding SaveAppointmentCommand}"
-                    BackgroundColor="#4CAF50"
-                    TextColor="White"
-                    CornerRadius="10"/>
+                    Command="{Binding SaveAppointmentCommand}" />
+
+            <Button Text="Clear"
+                    Command="{Binding ClearFormCommand}" />
 
             <Button Text="Cancel"
                     Command="{Binding CancelCommand}"
-                    BackgroundColor="LightGray"
-                    TextColor="Black"
-                    CornerRadius="10"/>
-
+                    BackgroundColor="LightGray" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

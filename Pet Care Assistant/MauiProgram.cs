@@ -7,6 +7,7 @@ using Pet_Care_Assistant.Models;
 using Pet_Care_Assistant.Services;
 using Pet_Care_Assistant.ViewModels;
 using Pet_Care_Assistant.Views;
+using Microcharts.Maui;
 
 namespace Pet_Care_Assistant
 {
@@ -17,6 +18,7 @@ namespace Pet_Care_Assistant
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMicrocharts()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -42,6 +44,9 @@ namespace Pet_Care_Assistant
             builder.Services.AddTransient<AppointmentListPage>();
             builder.Services.AddSingleton<AppointmentFormViewModel>();
             builder.Services.AddSingleton<AppointmentListViewModel>();
+            builder.Services.AddTransient<AppointmentStatsPage>();
+            builder.Services.AddTransient<AppointmentStatsViewModel>();
+
 
             // =======================================================
 

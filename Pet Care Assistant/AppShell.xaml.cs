@@ -8,6 +8,8 @@ namespace Pet_Care_Assistant
         {
             InitializeComponent();
             Routing.RegisterRoute("SettingsPage", typeof(SettingsPage));
+            Routing.RegisterRoute(nameof(AppointmentStatsPage), typeof(AppointmentStatsPage));
+
         }
     }
 }
