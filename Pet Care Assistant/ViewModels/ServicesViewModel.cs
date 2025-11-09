@@ -21,7 +21,7 @@ namespace Pet_Care_Assistant.ViewModels
         private string searchText;
 
         [ObservableProperty]
-        private double maxPrice = 500; // Prețul maxim de pe slider
+        private double maxPrice = 600; // Prețul maxim de pe slider
 
         [ObservableProperty]
         private int sortOptionIndex; // 0 = A-Z, 1 = Preț cresc., 2 = Preț desc.
