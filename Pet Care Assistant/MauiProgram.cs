@@ -38,6 +38,11 @@ namespace Pet_Care_Assistant
             builder.Services.AddSingleton<PetFormViewModel>();
             builder.Services.AddSingleton<SqliteConnectionFactory>();
 
+            builder.Services.AddTransient<AppointmentFormPage>();
+            builder.Services.AddTransient<AppointmentListPage>();
+            builder.Services.AddSingleton<AppointmentFormViewModel>();
+            builder.Services.AddSingleton<AppointmentListViewModel>();
+
             // =======================================================
 
             // LINI ESTE ȘTEARSĂ: builder.Services.AddSingleton<FontSizeConverter>(); 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="Pet_Care_Assistant.Views.AppointmentFormPage"
+             Title="Add Appointment">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Pet Name" FontAttributes="Bold" />
+            <Entry Placeholder="Enter pet name"
+                   Text="{Binding PetName}" />
+
+            <Label Text="Clinic Name" FontAttributes="Bold" />
+            <Entry Placeholder="Enter clinic name"
+                   Text="{Binding ClinicName}" />
+
+            <Label Text="Appointment Date" FontAttributes="Bold" />
+            <DatePicker MinimumDate="{x:Static sys:DateTime.Today}"
+                        Date="{Binding Date}" />
+
+            <Label Text="Appointment Time" FontAttributes="Bold" />
+            <TimePicker Time="{Binding Time}" />
+
+            <Label Text="Reason" FontAttributes="Bold" />
+            <Editor Placeholder="Enter reason"
+                    AutoSize="TextChanges"
+                    HeightRequest="100"
+                    Text="{Binding Reason}" />
+
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Label Text="Send Reminder?" VerticalOptions="Center" />
+                <Switch IsToggled="{Binding SendReminder}" />
+            </HorizontalStackLayout>
+
+            <Button Text="Save Appointment"
+                    Command="{Binding SaveAppointmentCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="10"/>
+
+            <Button Text="Cancel"
+                    Command="{Binding CancelCommand}"
+                    BackgroundColor="LightGray"
+                    TextColor="Black"
+                    CornerRadius="10"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -24,6 +24,17 @@
        Title="Services"
        ContentTemplate="{DataTemplate local:ServicesPage}"
        Route="ServiciesPage" />
+
+    <ShellContent
+   Title="Appointments"
+   ContentTemplate="{DataTemplate local:AppointmentListPage}"
+   Route="AppointmentListPage" />
+
+    <ShellContent
+   Title="New Appointment"
+   ContentTemplate="{DataTemplate local:AppointmentFormPage}"
+   Route="AppointmentFormPage" />
+
     <ShellContent
           Title="Health Checker"
           ContentTemplate="{DataTemplate local:HealthCheckerPage}"
@@ -36,6 +47,8 @@
              Title="Settings"
              ContentTemplate="{DataTemplate local:SettingsPage}"
              Route="SettingsPage" />
+
+  
 
     <!--</TabBar>-->
    
