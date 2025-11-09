@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pet_Care_Assistant.Views.AboutUsPage"
+             Title="Despre Noi"
+             BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
+
+    <!-- 
+    Notă: Nu am setat manual FontSize sau TextColor la majoritatea elementelor.
+    Acestea vor prelua automat stilurile globale din 'Styles.xaml' 
+    și vor reacționa la schimbările de temă și scalarea fontului.
+    -->
+
+    <ContentPage.Resources>
+        <!-- Stil local doar pentru titlurile de secțiune din această pagină -->
+        <Style x:Key="SectionTitleStyle" TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <!-- Am adăugat o culoare de Accent - poți să o definești în Colors.xaml -->
+            <!-- <Setter Property="TextColor" Value="{DynamicResource AccentColor}" /> -->
+            <Setter Property="Margin" Value="0, 0, 0, 10" />
+            <!-- FontSize-ul va fi preluat automat de stilul global + scalare -->
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="25">
+
+            <!-- Secțiunea: Despre Noi -->
+            <Frame>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Misiunea Noastră" Style="{StaticResource SectionTitleStyle}" />
+                    <Label>
+                        Suntem o clinică dedicată excelenței în medicina veterinară. Misiunea noastră este să oferim cea mai înaltă calitate a îngrijirii medicale, redând sănătatea și oferind o nouă șansă la viață companionilor dumneavoastră necuvântători. La Pet Care Assistant, fiecare pacient este tratat cu empatie și profesionalism, ca un membru al familiei.
+                    </Label>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Secțiunea: Contact -->
+            <Frame>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Detalii de Contact" Style="{StaticResource SectionTitleStyle}" />
+
+                    <!-- Grid pentru aliniere frumoasă -->
+                    <Grid RowSpacing="10" ColumnSpacing="10"
+                          RowDefinitions="Auto, Auto, Auto"
+                          ColumnDefinitions="Auto, *">
+
+                        <!-- Telefon -->
+                        <Label Grid.Row="0" Grid.Column="0" Text="Telefon:" FontAttributes="Bold" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="0785 296 378" />
+
+                        <!-- Email -->
+                        <Label Grid.Row="1" Grid.Column="0" Text="Email:" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="petcareassistant@gmail.com" />
+
+                        <!-- Adresă -->
+                        <Label Grid.Row="2" Grid.Column="0" Text="Adresă:" FontAttributes="Bold" />
+                        <Label Grid.Row="2" Grid.Column="1" Text="Str. Speranței, nr. 1, Sector 1, București" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Secțiunea: Program -->
+            <Frame>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Program de Lucru" Style="{StaticResource SectionTitleStyle}" />
+                    <Label Text="Luni - Duminică: Non-Stop" FontAttributes="Bold" />
+                    <Label Text="Clinica noastră este deschisă 24/7 pentru orice urgență." />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Secțiunea: Termeni și Condiții (Extensibilă) -->
+            <Frame>
+                <VerticalStackLayout Spacing="10">
+                    <!-- Partea pe care se apasă (cu săgeata) -->
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Termeni și Condiții" Style="{StaticResource SectionTitleStyle}" Margin="0"/>
+                        <Label x:Name="ArrowLabel" Text="›" FontSize="Large" FontAttributes="Bold" VerticalOptions="Center"/>
+
+                        <!-- Gesture Recognizer pentru a activa logica din code-behind -->
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTermsTapped" />
+                        </HorizontalStackLayout.GestureRecognizers>
+                    </HorizontalStackLayout>
+
+                    <Label Text="Apăsați aici pentru a citi termenii și condițiile de utilizare ale aplicației." />
+
+                    <!-- Conținutul ascuns, controlat de code-behind -->
+                    
+                    <Label x:Name="TermsContentLabel"
+                           IsVisible="False"
+                           Text="Acceptarea Condițiilor de Utilizare Bun venit la 'Pet Care Assistant'. Prin descărcarea, instalarea sau utilizarea acestei aplicații mobile, dumneavoastră („Utilizatorul”) confirmați că ați citit, ați înțeles și sunteți pe deplin de acord să respectați termenii și condițiile prezentate în acest document. Dacă nu sunteți de acord cu acești termeni, vă rugăm să nu utilizați aplicația.
+
+Scopul și Utilizarea Aplicației Aplicația este concepută ca un instrument digital pentru a asista clienții clinicii noastre veterinare în gestionarea informațiilor și sănătății animalelor lor de companie. Funcționalitățile includ, dar nu se limitează la, managementul programărilor, stocarea istoricului medical și primirea de notificări relevante. Aplicația este destinată exclusiv uzului personal, non-comercial. Orice utilizare în afara acestui scop desemnat, inclusiv pentru activități ilegale, este strict interzisă.
+
+Confidențialitatea Datelor Confidențialitatea dumneavoastră este o prioritate. Toate datele introduse, inclusiv informațiile personale și fișele medicale ale animalelor, sunt stocate local pe dispozitivul dumneavoastră și sunt tratate cu maximă securitate. Clinica noastră se angajează să nu partajeze, vândă sau distribuie aceste date către terțe părți fără consimțământul dumneavoastră explicit, cu excepția situațiilor în care acest lucru este cerut de lege.
+
+Limitarea Răspunderii și Sfatul Medical 'Pet Care Assistant' este un instrument de management și informare, nu un substitut pentru diagnosticul veterinar profesionist. Informațiile, memento-urile sau datele medicale prezentate în aplicație au caracter orientativ și nu trebuie să înlocuiască niciodată un consult de specialitate la medicul veterinar. Clinica nu își asumă răspunderea pentru decizii medicale bazate exclusiv pe datele aplicației sau pentru eventuala pierdere de date cauzată de utilizarea necorespunzătoare sau defecțiuni ale dispozitivului." />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

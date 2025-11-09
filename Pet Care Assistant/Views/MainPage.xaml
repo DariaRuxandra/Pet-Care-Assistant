@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Pet_Care_Assistant.Views.MainPage"
+    Title="My Pets">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Clicked="OnGoToPetProfileClicked" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label 
+            Text="Pagina de start"
+            FontAttributes="Bold"
+            HorizontalOptions="Center" />
+
+        <Button
+            Text="Get started"
+            Clicked="OnGoToPetProfileClicked"
+            HorizontalOptions="Center" />
+
+        <!-- ✅ MAUI CollectionView for your PetsList -->
+        <!--<CollectionView ItemsSource="{Binding PetsList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
+                            <Label Text="{Binding Type}" />
+                            <Label Text="{Binding Breed}" />
+                            <HorizontalStackLayout>
+                                <Label Text="Age: " />
+                                <Label Text="{Binding Age}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label Text="Owner: " />
+                                <Label Text="{Binding OwnerName}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label Text="Contact: " />
+                                <Label Text="{Binding OwnerContact}" />
+                            </HorizontalStackLayout>
+
+
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
+    </VerticalStackLayout>
+
+</ContentPage>

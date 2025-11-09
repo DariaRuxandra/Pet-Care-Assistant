@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Pet_Care_Assistant.ViewModels"
+             xmlns:models="clr-namespace:Pet_Care_Assistant.Models"
+             x:Class="Pet_Care_Assistant.Views.ServicesPage"
+             Title="Servicii">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ServicesViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <VerticalStackLayout Padding="10" Spacing="5">
+
+                <SearchBar Placeholder="Caută un serviciu..."
+                           Text="{Binding SearchText}" />
+
+                <Picker Title="Sortează după..."
+                        SelectedIndex="{Binding SortOptionIndex}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Nume (A-Z)</x:String>
+                            <x:String>Preț (Crescător)</x:String>
+                            <x:String>Preț (Descrescător)</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="{Binding MaxPrice, StringFormat='Preț maxim: {0:F0} RON'}" />
+                <Slider Minimum="0" Maximum="600" 
+                        Value="{Binding MaxPrice}" />
+
+                <Button Text="Aplică Filtrele"
+                        Command="{Binding ApplyFiltersCommand}" />
+
+            </VerticalStackLayout>
+
+            <BoxView HeightRequest="1" Color="{StaticResource Gray200}" />
+
+            <Label Text="Listă Servicii" FontAttributes="Bold" FontSize="20" Padding="10,10,10,0" />
+            <CollectionView ItemsSource="{Binding DisplayedServices}"
+                            SelectionMode="Single"
+                            HeightRequest="750">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Service">
+                        <Grid Padding="10" ColumnDefinitions="Auto, *, Auto">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ServicesViewModel}}, Path=ShowTreatmentCommand}"
+                                                      CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
+                            <Image Source="{Binding ImageUrl}"
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   Aspect="AspectFit"
+                                   VerticalOptions="Center" />
+
+                            <VerticalStackLayout Grid.Column="1" Padding="10,0" VerticalOptions="Center">
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+                                <Label Text="{Binding Description}" FontSize="14" TextColor="{StaticResource Gray500}" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="2" 
+                                   Text="{Binding Price, StringFormat='{0:F0} RON'}"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <BoxView HeightRequest="1" Color="{StaticResource Gray200}" Margin="0,10" />
+
+            <Label Text="Grafic Prețuri" FontAttributes="Bold" FontSize="20" Padding="10,0" />
+            <GraphicsView x:Name="PriceChartCanvas" 
+                          HeightRequest="400" 
+                          WidthRequest="400" 
+                          Margin="0,10" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

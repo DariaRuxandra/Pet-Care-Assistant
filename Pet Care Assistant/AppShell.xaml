@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Pet_Care_Assistant.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Pet_Care_Assistant.Views"
+    Title="Pet_Care_Assistant">
+
+    <!--<TabBar>-->
+        <!-- aici adaugam restul de pagini -->
+        <ShellContent
+             Title="Home"
+             ContentTemplate="{DataTemplate local:MainPage}"
+             Route="MainPage" />
+        <ShellContent
+             Title="Pet Form"
+             ContentTemplate="{DataTemplate local:PetListPage}"
+             Route="PetListPage" />
+    <ShellContent
+             Title="Pet List"
+             ContentTemplate="{DataTemplate local:PetFormPage}"
+             Route="PetFormPage" />
+    <ShellContent
+       Title="Services"
+       ContentTemplate="{DataTemplate local:ServicesPage}"
+       Route="ServiciesPage" />
+    <ShellContent
+          Title="Health Checker"
+          ContentTemplate="{DataTemplate local:HealthCheckerPage}"
+          Route="HealthCheckerPage" />
+    <ShellContent
+          Title="About Us"
+          ContentTemplate="{DataTemplate local:AboutUsPage}"
+          Route="AbouUsPage" />
+    <ShellContent
+             Title="Settings"
+             ContentTemplate="{DataTemplate local:SettingsPage}"
+             Route="SettingsPage" />
+
+    <!--</TabBar>-->
+   
+
+</Shell>

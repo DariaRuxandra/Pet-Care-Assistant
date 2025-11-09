@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pet_Care_Assistant.Views.PetListPage"
+             Title="Add a pet">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="8">
+
+            <Label Text="Pet form" FontAttributes="Bold" FontSize="18" />
+
+            <Entry Placeholder="Name" Text="{Binding Name}" />
+            <!--<Entry Placeholder="Species" Text="{Binding Species}" />-->
+            <!--<Entry Placeholder="Breed" Text="{Binding Breed}" />-->
+
+            <Label Text="Choose a dog breed from the list below:" FontAttributes="Bold" />
+
+            <!--<Picker x:Name="BreedPicker" Title="Choose breed" />
+
+            <Label x:Name="SelectedBreedLabel" Text="Selected: none" />-->
+
+            <Picker 
+                Title="Choose breed"
+                ItemsSource="{Binding DogBreeds}"
+                ItemDisplayBinding="{Binding Breed}"
+                SelectedItem="{Binding SelectedBreed}" />
+
+            <Label Text="{Binding SelectedBreed.Breed, StringFormat='Selected: {0}'}" />
+
+            <Entry Placeholder="Owner name" Text="{Binding OwnerName}" />
+            <Entry Placeholder="Owner contact" Text="{Binding OwnerContact}" Keyboard="Telephone" />
+
+           
+
+
+            <Label Text="Date of birth" />
+            <DatePicker Date="{Binding DateOfBirth, Mode=TwoWay}" />
+
+            <!--<Label Text="{Binding AgeDisplay}" FontAttributes="Bold" />-->
+
+            <Label Text="Pet photo" FontAttributes="Bold" Margin="0,10,0,0" />
+
+            <Image
+                Source="{Binding PetPhotoPath}"
+                HeightRequest="200"
+                Aspect="AspectFill"
+                BackgroundColor="LightGray"
+                Margin="0,5" />
+
+            <Button
+                Text="Upload Photo"
+                Command="{Binding PickPhotoCommand}" />
+
+            <Button Text="Save" Command="{Binding SavePetCommand}" />
+
+            <!-- aici e o functionalitate ce imi afiseaza toate rasele de caini extrase din JSON. Este legata din HomeViewModel.cs -> cu MVVM-->
+            <!--<CollectionView ItemsSource="{Binding DogBreeds}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Breed}"></Label>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+
+            <!-- Optional: list existing pets -->
+            <!--<Label Text="Saved pets" FontAttributes="Bold" Margin="0,12,0,0" />
+            <CollectionView ItemsSource="{Binding Pets}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Text="{Binding Species}" FontSize="12" />
+                                <Label Text="{Binding Breed}" FontSize="12" />
+                            </StackLayout>
+                            <Label Grid.Column="1" Text="{Binding Age}" VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
