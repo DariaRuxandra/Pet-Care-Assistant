@@ -9,15 +9,26 @@
     
     <VerticalStackLayout Padding="15" Spacing="15">
 
-        <SearchBar Placeholder="Search pets by name..."
-                   Text="{Binding SearchText}"
-                   FontSize="14"
-                   BackgroundColor="White"
-                   Margin="0,0,0,5"
-                   SearchCommand="{Binding SearchCommand}"
-                   CancelButtonColor="#888"/>
+        <Frame 
+        Padding="0"
+        CornerRadius="10"
+        HasShadow="False"
+        BorderColor="{AppThemeBinding Light='#DDD', Dark='#444'}"
+        BackgroundColor="{AppThemeBinding Light='White', Dark='#1E1E1E'}">
 
-        
+            <SearchBar 
+            Placeholder="Search pets by name..."
+            Text="{Binding SearchText}"
+            FontSize="14"
+            BackgroundColor="Transparent"
+            Margin="5,2"
+            SearchCommand="{Binding SearchCommand}"
+            CancelButtonColor="{AppThemeBinding Light='#888', Dark='#BBB'}"
+            TextColor="{AppThemeBinding Light='#222', Dark='#EEE'}"
+            PlaceholderColor="{AppThemeBinding Light='#999', Dark='#777'}"/>
+        </Frame>
+
+
         <CollectionView ItemsSource="{Binding FilteredPetsList}" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

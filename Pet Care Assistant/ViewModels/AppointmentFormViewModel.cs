@@ -39,7 +39,7 @@ namespace Pet_Care_Assistant.ViewModels
             ClearFormCommand = new RelayCommand(ClearForm);
             CancelCommand = new AsyncRelayCommand(CancelAppointmentAsync);
 
-            // ✅ Sample data for testing
+            
             Appointments.Add(new Appointment
             {
                 PetName = "Buddy",
