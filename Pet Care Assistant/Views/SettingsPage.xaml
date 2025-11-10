@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:Pet_Care_Assistant.ViewModels"
              
              x:Class="Pet_Care_Assistant.Views.SettingsPage"
-             Title="Setări">
+             Title="Settings">
              
     <ContentPage.BindingContext>
         <vm:SettingsViewModel />
@@ -15,13 +15,10 @@
     <ScrollView>
         <VerticalStackLayout Spacing="30" Padding="25">
 
-            <Label Text="Setări"
-                   FontSize="Title"
-                   FontAttributes="Bold" />
-
+           
                 <!-- Mod Întunecat -->
                 <StackLayout Orientation="Horizontal" Spacing="20">
-                    <Label Text="Activează Modul Întunecat"
+                    <Label Text="Switch to dark/light mode"
                        VerticalOptions="Center"
                        HorizontalOptions="StartAndExpand" />
                         <Switch IsToggled="{Binding IsDarkModeEnabled}"
@@ -30,14 +27,14 @@
 
                 <!-- Dimensiune Font (Slider) -->
                 <StackLayout Spacing="5">
-                    <Label Text="Dimensiune Font (Scalare)" />
+                    <Label Text="Font dimension (Scale)" />
 
                     <Slider x:Name="FontSizeSlider"
                         Value="{Binding FontSizeScale}"
                         Minimum="0.8"
                         Maximum="1.5" />
 
-                        <Label Text="{Binding Source={x:Reference FontSizeSlider}, Path=Value, StringFormat='Scala curentă: {0:F1}'}"
+                        <Label Text="{Binding Source={x:Reference FontSizeSlider}, Path=Value, StringFormat='Current scale: {0:F1}'}"
                        FontSize="Small"
                        HorizontalOptions="Center" />
                 </StackLayout>

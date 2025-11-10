@@ -4,8 +4,6 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Maui.Graphics;
-
-// Rezolvă CS0104 (Ambiguitate Condition)
 using AppCondition = Pet_Care_Assistant.Models.Condition;
 
 namespace Pet_Care_Assistant.ViewModels
@@ -17,7 +15,7 @@ namespace Pet_Care_Assistant.ViewModels
         [ObservableProperty] private ObservableCollection<AppCondition> displayedConditions;
         [ObservableProperty] private string searchText;
         [ObservableProperty] private int severityFilterIndex;
-        [ObservableProperty] private string selectedAnimalType = "Câine";
+        [ObservableProperty] private string selectedAnimalType = "Dog";
 
         public HealthCheckerViewModel()
         {
@@ -31,24 +29,25 @@ namespace Pet_Care_Assistant.ViewModels
         {
             var filteredList = allConditions.AsEnumerable();
 
-            // 1. FILTRARE TEXT
+            // 1. TEXT FILTER
             if (!string.IsNullOrWhiteSpace(SearchText))
-                filteredList = filteredList.Where(c => c.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase) || c.Description.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+                filteredList = filteredList.Where(c => c.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
+                                                       c.Description.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
 
-            // 2. FILTRARE GRAVITATE
+            // 2. SEVERITY FILTER
             if (SeverityFilterIndex > 0)
             {
                 string selectedSeverity = "";
                 switch (SeverityFilterIndex)
                 {
-                    case 1: selectedSeverity = "Ușoară"; break;
-                    case 2: selectedSeverity = "Moderată"; break;
-                    case 3: selectedSeverity = "Urgență"; break;
+                    case 1: selectedSeverity = "Mild"; break;
+                    case 2: selectedSeverity = "Moderate"; break;
+                    case 3: selectedSeverity = "Emergency"; break;
                 }
                 filteredList = filteredList.Where(c => c.Severity == selectedSeverity);
             }
 
-            // 3. FILTRARE TIP ANIMAL
+            // 3. ANIMAL TYPE FILTER
             if (!string.IsNullOrWhiteSpace(SelectedAnimalType))
                 filteredList = filteredList.Where(c => c.AnimalType.Contains(SelectedAnimalType));
 
@@ -64,121 +63,121 @@ namespace Pet_Care_Assistant.ViewModels
 
         private void LoadConditions()
         {
-            // LISTA CU EXACT 3 AFECȚIUNI PE CATEGORIE
+            // LIST WITH EXACTLY 3 CONDITIONS PER CATEGORY
             allConditions = new List<AppCondition>
             {
-                // --- 🚨 URGENȚĂ (3 Afecțiuni) ---
+                // --- 🚨 EMERGENCY (3 Conditions) ---
                 new AppCondition
                 {
-                    Name = "Vomă/Diaree cu sânge",
-                    Description = "Eliminare de sânge în vomă sau scaun, letargie, febră, stare de șoc.",
-                    Severity = "Urgență",
-                    Urgency = "Imediat la Urgențe",
-                    AnimalType = "Câine, Pisică",
+                    Name = "Vomiting/Diarrhea with Blood",
+                    Description = "Presence of blood in vomit or stool, lethargy, fever, signs of shock.",
+                    Severity = "Emergency",
+                    Urgency = "Immediate Emergency Care",
+                    AnimalType = "Dog, Cat",
                     ImageUrl = "icon_vomiting.png",
-                    SeverityColor = Color.FromHex("#D32F2F"), // Roșu Intens
-                    DetailsContent = "Poate indica Parvoviroză, ingestia de corp străin tăios sau o intoxicație severă (ex: raticide). **Nu administrați medicamente umane.**",
-                    RecommendedAction = "Transport urgent la clinică pentru analize și intervenție."
+                    SeverityColor = Color.FromHex("#D32F2F"), // Intense Red
+                    DetailsContent = "May indicate parvovirus infection, ingestion of a sharp foreign object, or severe poisoning (e.g., rat poison). **Do not administer human medication.**",
+                    RecommendedAction = "Urgent transport to a veterinary clinic for diagnosis and intervention."
                 },
                 new AppCondition
                 {
-                    Name = "Dificultăți de respirație",
-                    Description = "Gâfâit continuu, respirație pe gură (la pisici), buze/gingii albăstrui sau palide.",
-                    Severity = "Urgență",
-                    Urgency = "Urgență Majoră",
-                    AnimalType = "Câine, Pisică",
+                    Name = "Breathing Difficulties",
+                    Description = "Continuous panting, mouth breathing (especially in cats), bluish or pale gums/lips.",
+                    Severity = "Emergency",
+                    Urgency = "Major Emergency",
+                    AnimalType = "Dog, Cat",
                     ImageUrl = "icon_cough.png",
                     SeverityColor = Color.FromHex("#D32F2F"),
-                    DetailsContent = "Indică insuficiență cardiacă, edem pulmonar sau obstrucție. Păstrați animalul calm și evitați stresul. Fiecare secundă contează.",
-                    RecommendedAction = "Mergeți la cea mai apropiată clinică de urgență."
+                    DetailsContent = "May indicate heart failure, pulmonary edema, or airway obstruction. Keep the animal calm and avoid stress. Every second counts.",
+                    RecommendedAction = "Go to the nearest veterinary emergency clinic immediately."
                 },
                 new AppCondition
                 {
-                    Name = "Colaps/Convulsii",
-                    Description = "Pierderea bruscă a cunoștinței, spasme musculare incontrolabile, salivare excesivă.",
-                    Severity = "Urgență",
-                    Urgency = "Urgență Majoră",
-                    AnimalType = "Câine, Pisică",
+                    Name = "Collapse/Seizures",
+                    Description = "Sudden loss of consciousness, uncontrollable muscle spasms, excessive drooling.",
+                    Severity = "Emergency",
+                    Urgency = "Major Emergency",
+                    AnimalType = "Dog, Cat",
                     ImageUrl = "icon_seizure.png",
                     SeverityColor = Color.FromHex("#D32F2F"),
-                    DetailsContent = "Convulsiile pot fi cauzate de epilepsie, hipoglicemie, traumă sau intoxicații. Nu atingeți gura animalului. Cronometrați durata crizei.",
-                    RecommendedAction = "Consultați veterinarul imediat după încetarea convulsiilor (sau în timpul lor, dacă nu se opresc)."
+                    DetailsContent = "Seizures may be caused by epilepsy, hypoglycemia, trauma, or poisoning. Do not touch the animal’s mouth. Time the duration of the episode.",
+                    RecommendedAction = "Contact your veterinarian immediately after the episode ends (or during, if it does not stop)."
                 },
                 
-                // --- ⚠️ MODERATĂ (3 Afecțiuni) ---
+                // --- ⚠️ MODERATE (3 Conditions) ---
                 new AppCondition
                 {
-                    Name = "Infecție de ureche",
-                    Description = "Scuturare frecventă a capului, scărpinat, secreții maronii cu miros neplăcut.",
-                    Severity = "Moderată",
-                    Urgency = "Programare în 2-3 zile",
-                    AnimalType = "Câine, Pisică",
+                    Name = "Ear Infection",
+                    Description = "Frequent head shaking, scratching, brownish discharge with unpleasant odor.",
+                    Severity = "Moderate",
+                    Urgency = "Appointment in 2–3 days",
+                    AnimalType = "Dog, Cat",
                     ImageUrl = "icon_ear.png",
-                    SeverityColor = Color.FromHex("#FF9800"), // Portocaliu
-                    DetailsContent = "Infecțiile bacteriene sau fungice pot duce la otită cronică. Nu folosiți alcool sanitar. Curățarea trebuie făcută cu soluții specializate.",
-                    RecommendedAction = "Programare pentru diagnostic (otoscopie) și tratament topic."
+                    SeverityColor = Color.FromHex("#FF9800"), // Orange
+                    DetailsContent = "Bacterial or fungal infections can lead to chronic otitis. Do not use alcohol. Cleaning should be done only with specialized solutions.",
+                    RecommendedAction = "Schedule a veterinary consultation for diagnosis (otoscopy) and topical treatment."
                 },
                 new AppCondition
                 {
-                    Name = "Infecție urinară (UTI)",
-                    Description = "Urinare frecventă, în cantități mici, urinat în locuri neobișnuite, prezența sângelui în urină.",
-                    Severity = "Moderată",
-                    Urgency = "Programare în 24-48h",
-                    AnimalType = "Pisică",
+                    Name = "Urinary Tract Infection (UTI)",
+                    Description = "Frequent urination in small amounts, urinating in unusual places, traces of blood in urine.",
+                    Severity = "Moderate",
+                    Urgency = "Appointment within 24–48h",
+                    AnimalType = "Cat",
                     ImageUrl = "icon_kidney.png",
                     SeverityColor = Color.FromHex("#FF9800"),
-                    DetailsContent = "Poate evolua spre obstrucție urinară, o urgență fatală. Este crucial să se efectueze o analiză de urină. Hidratare crescută ajută.",
-                    RecommendedAction = "Vizită la veterinar pentru analiză de urină și eventual antibiotice."
+                    DetailsContent = "May progress to urinary blockage, which can be fatal. A urine test is essential. Increased hydration helps significantly.",
+                    RecommendedAction = "Veterinary visit for urine analysis and possible antibiotic treatment."
                 },
                 new AppCondition
                 {
-                    Name = "Leziune ușoară labă/șchiopătat",
-                    Description = "Șchiopătat ușor după o activitate, fără umflătură evidentă, durere redusă la palpare.",
-                    Severity = "Moderată",
-                    Urgency = "Monitorizare 24h",
-                    AnimalType = "Câine",
+                    Name = "Minor Paw Injury/Limping",
+                    Description = "Mild limping after activity, no visible swelling, slight pain when touched.",
+                    Severity = "Moderate",
+                    Urgency = "Monitor for 24h",
+                    AnimalType = "Dog",
                     ImageUrl = "icon_joint.png",
                     SeverityColor = Color.FromHex("#FF9800"),
-                    DetailsContent = "Poate fi o simplă entorsă sau o iritație la pernă. Odihnă obligatorie timp de o zi. Dacă șchiopătatul persistă sau se înrăutățește, consultați medicul.",
-                    RecommendedAction = "Repaus forțat și monitorizarea evoluției."
+                    DetailsContent = "May indicate a mild sprain or pad irritation. Mandatory rest for one day. If limping persists or worsens, consult a vet.",
+                    RecommendedAction = "Enforce rest and monitor recovery progress."
                 },
                 
-                // --- 🟢 UȘOARĂ (3 Afecțiuni) ---
+                // --- 🟢 MILD (3 Conditions) ---
                 new AppCondition
                 {
-                    Name = "Diaree simplă",
-                    Description = "Scaune moi, dar fără sânge, animalul este vioi și mănâncă normal.",
-                    Severity = "Ușoară",
-                    Urgency = "Monitorizare 24-48h",
-                    AnimalType = "Câine, Pisică",
+                    Name = "Simple Diarrhea",
+                    Description = "Soft stools but no blood, the animal remains active and eats normally.",
+                    Severity = "Mild",
+                    Urgency = "Monitor for 24–48h",
+                    AnimalType = "Dog, Cat",
                     ImageUrl = "icon_diarrhea.png",
-                    SeverityColor = Color.FromHex("#4CAF50"), // Verde
-                    DetailsContent = "De obicei cauzată de schimbarea dietei sau de ingestia a ceva neadecvat. Dieta blândă (orez și pui/ton în apă) ajută. Suplimente probiotice recomandate.",
-                    RecommendedAction = "Dietă blândă și hidratare."
+                    SeverityColor = Color.FromHex("#4CAF50"), // Green
+                    DetailsContent = "Usually caused by a sudden change in diet or ingestion of inappropriate food. A light diet (rice and chicken/tuna in water) helps. Probiotic supplements recommended.",
+                    RecommendedAction = "Provide a light diet and ensure proper hydration."
                 },
                 new AppCondition
                 {
-                    Name = "Ochi umezi/Lăcrimare",
-                    Description = "Lăcrimare excesivă, fără roșeață, puroi sau sensibilitate la lumină.",
-                    Severity = "Ușoară",
-                    Urgency = "Igienă zilnică",
-                    AnimalType = "Câine, Pisică",
+                    Name = "Watery Eyes/Excessive Tearing",
+                    Description = "Excessive tearing without redness, pus, or light sensitivity.",
+                    Severity = "Mild",
+                    Urgency = "Daily Hygiene",
+                    AnimalType = "Dog, Cat",
                     ImageUrl = "icon_eye.png",
                     SeverityColor = Color.FromHex("#4CAF50"),
-                    DetailsContent = "Frecventă la rasele cu fața plată. Curățați zilnic cu soluție salină sau soluții speciale pentru ochi. Dacă apare roșeață, vizitați medicul.",
-                    RecommendedAction = "Igienă locală consecventă."
+                    DetailsContent = "Common in flat-faced breeds. Clean the area daily with saline or eye-cleaning solutions. If redness appears, consult a veterinarian.",
+                    RecommendedAction = "Consistent local hygiene and monitoring."
                 },
                 new AppCondition
                 {
-                    Name = "Mătreață/Piele uscată",
-                    Description = "Prezența mătreții, blană ternă sau ușor uleioasă. Fără mâncărime intensă.",
-                    Severity = "Ușoară",
-                    Urgency = "Ajustare dietă",
-                    AnimalType = "Câine, Pisică",
+                    Name = "Dandruff/Dry Skin",
+                    Description = "Presence of dandruff, dull or slightly oily coat, without intense itching.",
+                    Severity = "Mild",
+                    Urgency = "Diet Adjustment",
+                    AnimalType = "Dog, Cat",
                     ImageUrl = "icon_skin.png",
                     SeverityColor = Color.FromHex("#4CAF50"),
-                    DetailsContent = "Poate fi un semn de deshidratare sau lipsă de acizi grași Omega 3/6 din dietă. Adăugați ulei de somon sau un supliment de calitate în hrană.",
-                    RecommendedAction = "Suplimente nutritive și îmbunătățirea calității hranei."
+                    DetailsContent = "May be a sign of dehydration or a lack of Omega 3/6 fatty acids in the diet. Add salmon oil or a quality supplement to the pet’s meals.",
+                    RecommendedAction = "Add nutritional supplements and improve food quality."
                 }
             };
         }

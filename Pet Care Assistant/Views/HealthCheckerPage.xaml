@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:Pet_Care_Assistant.ViewModels"
              xmlns:models="clr-namespace:Pet_Care_Assistant.Models"
              x:Class="Pet_Care_Assistant.Views.HealthCheckerPage"
-             Title="Verificator Sănătate">
+             Title="Health Checker">
 
     <ContentPage.BindingContext>
         <viewmodels:HealthCheckerViewModel />
@@ -13,33 +13,46 @@
     <ScrollView>
         <VerticalStackLayout Padding="15" Spacing="10">
 
-            <Label Text="Verificator Rapid de Sănătate" FontAttributes="Bold" FontSize="22" HorizontalOptions="Center" Margin="0,10,0,10" TextColor="{StaticResource Primary}"/>
+            <Label Text="Quick Health Checker" 
+                   FontAttributes="Bold" 
+                   FontSize="22" 
+                   HorizontalOptions="Center" 
+                   Margin="0,10,0,10" 
+                   TextColor="{StaticResource Primary}"/>
 
-            <Border Stroke="{StaticResource Gray200}" StrokeThickness="1" Padding="10" Margin="0,0,0,10"
+            <Border Stroke="{StaticResource Gray200}" 
+                    StrokeThickness="1" 
+                    Padding="10" 
+                    Margin="0,0,0,10"
                     BackgroundColor="{StaticResource Gray100}"
                     StrokeShape="RoundRectangle 10,10,10,10">
                 <VerticalStackLayout Spacing="5">
 
-                    <SearchBar Placeholder="Caută afecțiuni..." Text="{Binding SearchText}" />
+                    <SearchBar Placeholder="Search conditions..." 
+                               Text="{Binding SearchText}" />
 
-                    <Picker Title="Filtrează după gravitate..." SelectedIndex="{Binding SeverityFilterIndex}">
+                    <Picker Title="Filter by severity..." 
+                            SelectedIndex="{Binding SeverityFilterIndex}">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
-                                <x:String>Toate</x:String>
-                                <x:String>Ușoară</x:String>
-                                <x:String>Moderată</x:String>
-                                <x:String>Urgență</x:String>
+                                <x:String>All</x:String>
+                                <x:String>Mild</x:String>
+                                <x:String>Moderate</x:String>
+                                <x:String>Emergency</x:String>
                             </x:Array>
                         </Picker.ItemsSource>
                     </Picker>
 
                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="15" Margin="0,10,0,0">
-                        <Label Text="Tip animal:" VerticalOptions="Center"/>
+                        <Label Text="Animal type:" VerticalOptions="Center"/>
 
-                        <RadioButton Content="Câine" GroupName="AnimalType" IsChecked="True" 
+                        <RadioButton Content="Dog" 
+                                     GroupName="AnimalType" 
+                                     IsChecked="True"
                                      CheckedChanged="AnimalType_CheckedChanged" />
 
-                        <RadioButton Content="Pisică" GroupName="AnimalType" 
+                        <RadioButton Content="Cat" 
+                                     GroupName="AnimalType"
                                      CheckedChanged="AnimalType_CheckedChanged" />
                     </HorizontalStackLayout>
 
@@ -52,7 +65,8 @@
 
                         <Border Margin="5" Padding="0" StrokeShape="RoundRectangle 10,10,10,10"
                                 BackgroundColor="White"
-                                Stroke="{Binding SeverityColor}" StrokeThickness="2">
+                                Stroke="{Binding SeverityColor}" 
+                                StrokeThickness="2">
 
                             <VerticalStackLayout>
 
@@ -61,24 +75,40 @@
                                         <TapGestureRecognizer Command="{Binding ToggleExpandCommand}"/>
                                     </Grid.GestureRecognizers>
 
-                                    <Image Grid.Column="0" Source="{Binding ImageUrl}" HeightRequest="50" WidthRequest="50" Aspect="AspectFit"/>
+                                    <Image Grid.Column="0" 
+                                           Source="{Binding ImageUrl}" 
+                                           HeightRequest="50" 
+                                           WidthRequest="50" 
+                                           Aspect="AspectFit"/>
 
                                     <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
-                                        <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
-                                        <Label Text="{Binding Description}" FontSize="12" TextColor="{StaticResource Gray700}" LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding Name}" 
+                                               FontSize="16" 
+                                               FontAttributes="Bold" 
+                                               TextColor="{StaticResource Primary}" />
+                                        <Label Text="{Binding Description}" 
+                                               FontSize="12" 
+                                               TextColor="{StaticResource Gray700}" 
+                                               LineBreakMode="TailTruncation"/>
                                     </VerticalStackLayout>
 
                                     <HorizontalStackLayout Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" Spacing="5">
 
                                         <VerticalStackLayout HorizontalOptions="End" VerticalOptions="Center">
-                                            <Label Text="{Binding Urgency}" FontSize="Small" FontAttributes="Bold" 
-                                                   TextColor="{Binding SeverityColor}" HorizontalOptions="Center" />
-                                            <Label Text="Apasă pentru detalii" FontSize="Micro" TextColor="{StaticResource Secondary}"/>
+                                            <Label Text="{Binding Urgency}" 
+                                                   FontSize="Small" 
+                                                   FontAttributes="Bold" 
+                                                   TextColor="{Binding SeverityColor}" 
+                                                   HorizontalOptions="Center" />
+                                            <Label Text="Tap for details" 
+                                                   FontSize="Micro" 
+                                                   TextColor="{StaticResource Secondary}"/>
                                         </VerticalStackLayout>
 
                                         <Image x:Name="ExpandIndicator"
                                                Source="arrow_down.png"
-                                               HeightRequest="15" WidthRequest="15"
+                                               HeightRequest="15" 
+                                               WidthRequest="15"
                                                VerticalOptions="Center">
 
                                             <Image.Triggers>
@@ -100,13 +130,22 @@
                                       BackgroundColor="{StaticResource Gray100}">
 
                                     <VerticalStackLayout Spacing="10">
-                                        <Label Text="Acțiune Imediată:" FontAttributes="Bold" TextColor="{StaticResource Primary}" Margin="0,5,0,0"/>
-                                        <Label Text="{Binding RecommendedAction}" FontAttributes="Italic" TextColor="Black"/>
+                                        <Label Text="Immediate Action:" 
+                                               FontAttributes="Bold" 
+                                               TextColor="{StaticResource Primary}" 
+                                               Margin="0,5,0,0"/>
+                                        <Label Text="{Binding RecommendedAction}" 
+                                               FontAttributes="Italic" 
+                                               TextColor="Black"/>
 
                                         <BoxView HeightRequest="1" Color="{StaticResource Gray200}"/>
 
-                                        <Label Text="Detalii Medicale:" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
-                                        <Label Text="{Binding DetailsContent}" TextColor="Black" LineHeight="1.4"/>
+                                        <Label Text="Medical Details:" 
+                                               FontAttributes="Bold" 
+                                               TextColor="{StaticResource Primary}"/>
+                                        <Label Text="{Binding DetailsContent}" 
+                                               TextColor="Black" 
+                                               LineHeight="1.4"/>
                                     </VerticalStackLayout>
                                 </VerticalStackLayout>
 

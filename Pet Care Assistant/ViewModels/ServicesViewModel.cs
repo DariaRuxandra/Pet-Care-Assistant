@@ -1,4 +1,4 @@
-﻿// În folderul ViewModels/ServicesViewModel.cs
+﻿// Located in ViewModels/ServicesViewModel.cs
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Pet_Care_Assistant.Models;
@@ -9,59 +9,59 @@ namespace Pet_Care_Assistant.ViewModels
 {
     public partial class ServicesViewModel : ObservableObject
     {
-        // Lista completă, hardcodată
+        // Full, hardcoded list of services
         private List<Service> allServices;
 
-        // Lista afișată în CollectionView, care se schimbă
+        // The list displayed in the CollectionView (changes dynamically)
         [ObservableProperty]
         private ObservableCollection<Service> displayedServices;
 
-        // Proprietăți legate de controalele din XAML
+        // Properties bound to XAML controls
         [ObservableProperty]
         private string searchText;
 
         [ObservableProperty]
-        private double maxPrice = 600; // Prețul maxim de pe slider
+        private double maxPrice = 600; // Maximum price from the slider
 
         [ObservableProperty]
-        private int sortOptionIndex; // 0 = A-Z, 1 = Preț cresc., 2 = Preț desc.
+        private int sortOptionIndex; // 0 = A–Z, 1 = Price Ascending, 2 = Price Descending
 
         public ServicesViewModel()
         {
-            // ✅ LISTA DE SERVICII EXTINSĂ
+            // ✅ EXTENDED LIST OF SERVICES
             allServices = new List<Service>
-    {
-        // 1. Consultații & Bază
-        new Service { Name = "Consultatie Generala", Price = 150, Description = "Examinare clinică completă și plan de îngrijire inițial.", ImageUrl = "icon_consult.png", TreatmentPlan = "Plan: Repaus și reevaluare în 48h." },
-        new Service { Name = "Vaccinare Polivalenta", Price = 200, Description = "Imunizare anuală împotriva bolilor majore.", ImageUrl = "icon_vaccin.png", TreatmentPlan = "Plan: Evitarea efortului fizic și a contactului cu alte animale timp de 7 zile." },
-        new Service { Name = "Microcipare", Price = 100, Description = "Implantare microcip de identificare, înregistrare în baza de date națională.", ImageUrl = "icon_microcip.png", TreatmentPlan = "Plan: Monitorizare zonă implant." },
-        
-        // 2. Profilaxie & Igienă
-        new Service { Name = "Detartraj cu Ultrasunete", Price = 450, Description = "Curățare profesională a dinților sub anestezie generală.", ImageUrl = "icon_dentar.png", TreatmentPlan = "Plan: Hrană moale timp de 3 zile și soluție antiseptică bucală." },
-        new Service { Name = "Taiere Unghii", Price = 50, Description = "Scurtarea ghearelor la lungimea optimă.", ImageUrl = "icon_nails.png", TreatmentPlan = "Plan: Nu necesită tratament post-intervenție." },
-        new Service { Name = "Tuns Terapeutic", Price = 120, Description = "Tuns specializat pentru a preveni încâlcirea și problemele de piele.", ImageUrl = "icon_tuns.png", TreatmentPlan = "Plan: Periaj zilnic pentru menținerea blănii." },
-        
-        // 3. Diagnostic & Laborator
-        new Service { Name = "Analize Sange Complete", Price = 250, Description = "Hemogramă și biochimie de bază pentru evaluarea funcțiilor organelor.", ImageUrl = "icon_blood.png", TreatmentPlan = "Plan: Post negru de 12 ore înainte de prelevare." },
-        new Service { Name = "Ecografie Abdominala", Price = 300, Description = "Examinare imagistică non-invazivă a organelor interne.", ImageUrl = "icon_echo.png", TreatmentPlan = "Plan: Golirea vezicii urinare și post alimentar." },
+            {
+                // 1. Consultations & General Care
+                new Service { Name = "General Consultation", Price = 150, Description = "Comprehensive clinical examination and initial care plan.", ImageUrl = "icon_consult.png", TreatmentPlan = "Plan: Rest and re-evaluation in 48 hours." },
+                new Service { Name = "Polyvalent Vaccination", Price = 200, Description = "Annual immunization against major diseases.", ImageUrl = "icon_vaccin.png", TreatmentPlan = "Plan: Avoid physical exertion and contact with other animals for 7 days." },
+                new Service { Name = "Microchipping", Price = 100, Description = "Implantation of an identification microchip and registration in the national database.", ImageUrl = "icon_microcip.png", TreatmentPlan = "Plan: Monitor the implantation area." },
+                
+                // 2. Prophylaxis & Hygiene
+                new Service { Name = "Ultrasound Descaling", Price = 450, Description = "Professional dental cleaning performed under general anesthesia.", ImageUrl = "icon_dentar.png", TreatmentPlan = "Plan: Soft food for 3 days and antiseptic mouth rinse." },
+                new Service { Name = "Nail Trimming", Price = 50, Description = "Trimming the claws to the optimal length.", ImageUrl = "icon_nails.png", TreatmentPlan = "Plan: No post-procedure treatment required." },
+                new Service { Name = "Therapeutic Grooming", Price = 120, Description = "Specialized haircut to prevent tangling and skin problems.", ImageUrl = "icon_tuns.png", TreatmentPlan = "Plan: Daily brushing to maintain coat quality." },
+                
+                // 3. Diagnosis & Laboratory
+                new Service { Name = "Complete Blood Analysis", Price = 250, Description = "Full hematology and biochemistry tests to assess organ function.", ImageUrl = "icon_blood.png", TreatmentPlan = "Plan: 12-hour fasting before sample collection." },
+                new Service { Name = "Abdominal Ultrasound", Price = 300, Description = "Non-invasive imaging examination of internal organs.", ImageUrl = "icon_echo.png", TreatmentPlan = "Plan: Empty the bladder and avoid food before the procedure." },
 
-        // 4. Chirurgie & Urgențe
-        new Service { Name = "Sterilizare (Femela)", Price = 600, Description = "Intervenție chirurgicală pentru prevenirea reproducerii.", ImageUrl = "icon_surgery.png", TreatmentPlan = "Plan: Suturi, administrare de antibiotic și control post-operator la 7 zile." },
-        new Service { Name = "Tratament Intravenos", Price = 350, Description = "Administrare de soluții medicamentoase sau perfuzii de rehidratare.", ImageUrl = "icon_iv.png", TreatmentPlan = "Plan: Monitorizare constantă și evaluarea semnelor vitale." }
-    };
+                // 4. Surgery & Emergencies
+                new Service { Name = "Spaying (Female)", Price = 600, Description = "Surgical procedure to prevent reproduction.", ImageUrl = "icon_surgery.png", TreatmentPlan = "Plan: Stitches, antibiotic treatment, and post-op check-up after 7 days." },
+                new Service { Name = "Intravenous Treatment", Price = 350, Description = "Administration of medicinal solutions or rehydration infusions.", ImageUrl = "icon_iv.png", TreatmentPlan = "Plan: Continuous monitoring and assessment of vital signs." }
+            };
 
-            // Inițial, lista afișată este identică cu lista completă
+            // Initially, the displayed list is identical to the full list
             DisplayedServices = new ObservableCollection<Service>(allServices);
         }
 
-        // Comanda care este apelată de butonul "Aplică"
+        // Command triggered by the "Apply Filter" button
         [RelayCommand]
         private void ApplyFilters()
         {
-            // 1. Începe cu lista completă
+            // 1. Start from the complete list
             var filteredList = allServices;
 
-            // 2. Filtrează după textul de căutare (dacă există)
+            // 2. Filter by search text (if provided)
             if (!string.IsNullOrWhiteSpace(SearchText))
             {
                 filteredList = filteredList.Where(s => s.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
@@ -69,24 +69,24 @@ namespace Pet_Care_Assistant.ViewModels
                                            .ToList();
             }
 
-            // 3. Filtrează după prețul de pe Slider
+            // 3. Filter by price (slider value)
             filteredList = filteredList.Where(s => s.Price <= MaxPrice).ToList();
 
-            // 4. Sortează în funcție de Picker
+            // 4. Sort according to Picker selection
             switch (SortOptionIndex)
             {
-                case 0: // A-Z
+                case 0: // A–Z
                     filteredList = filteredList.OrderBy(s => s.Name).ToList();
                     break;
-                case 1: // Preț Crescător
+                case 1: // Price Ascending
                     filteredList = filteredList.OrderBy(s => s.Price).ToList();
                     break;
-                case 2: // Preț Descrescător
+                case 2: // Price Descending
                     filteredList = filteredList.OrderByDescending(s => s.Price).ToList();
                     break;
             }
 
-            // 5. Actualizează lista afișată pe ecran
+            // 5. Update the displayed list
             DisplayedServices.Clear();
             foreach (var service in filteredList)
             {
@@ -94,12 +94,13 @@ namespace Pet_Care_Assistant.ViewModels
             }
         }
 
-        // Comandă pentru afișarea schemei de tratament (opțional)
+        // Command to display treatment plan details (optional)
         [RelayCommand]
         private async Task ShowTreatment(Service service)
         {
             if (service == null) return;
-            // Afișează un pop-up simplu cu schema
+
+            // Display a simple pop-up with the treatment plan
             await Shell.Current.DisplayAlert(service.Name, service.TreatmentPlan, "OK");
         }
     }
