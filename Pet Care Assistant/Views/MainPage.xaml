@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Pet_Care_Assistant.Views.MainPage"
     Title="Pet Care Assistant"
-    BackgroundColor="#F5F5F5">
+    >
 
     <ScrollView>
         <Grid>

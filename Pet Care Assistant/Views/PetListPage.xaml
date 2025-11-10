@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
+    <!--<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="Pet_Care_Assistant.Views.PetListPage"
              Title="Add a pet">
-    <!--<ScrollView>
+    --><!--<ScrollView>
         <VerticalStackLayout Padding="16" Spacing="8">
 
             <Label Text="Pet form" FontAttributes="Bold" FontSize="18" />
@@ -84,29 +86,29 @@
 
             
         </VerticalStackLayout>
-    </ScrollView>-->
+    </ScrollView>--><!--
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="16">
 
-            <!-- Header -->
+            --><!-- Header --><!--
             <Label Text="🐾 Add Your Pet"
                    FontSize="24"
                    FontAttributes="Bold"
                    TextColor="#222"
                    HorizontalOptions="Center" />
 
-            <!-- Card -->
-            <Frame BackgroundColor="White"
+            --><!-- Card --><!--
+            <Frame 
                    Padding="20"
                    CornerRadius="15"
                    HasShadow="True">
 
                 <VerticalStackLayout Spacing="12">
 
-                    <!-- Pet Name -->
+                    --><!-- Pet Name --><!--
                     <Label Text="Pet Name" FontAttributes="Bold" TextColor="#444" />
-                    <Frame BackgroundColor="#F3F3F3"
+                    <Frame 
                            Padding="10"
                            CornerRadius="10"
                            HasShadow="False">
@@ -118,23 +120,23 @@
                                PlaceholderColor="#999" />
                     </Frame>
 
-                    <!-- Breed -->
+                    --><!-- Breed --><!--
                     <Label Text="Dog Breed" FontAttributes="Bold" TextColor="#444" />
 
                     <Frame Padding="0"
                            CornerRadius="10"
-                           BackgroundColor="#F3F3F3"
+                           
                            HasShadow="False"
                            HeightRequest="45">
-                        <!--<Picker 
+                        <Picker 
                             Title="Select breed"
                             ItemsSource="{Binding DogBreeds}"
                             ItemDisplayBinding="{Binding Breed}"
                             SelectedItem="{Binding SelectedBreed}"
                             FontSize="14"
                             VerticalOptions="Center"
-                            HorizontalOptions="Fill" />-->
-                        <Picker 
+                            HorizontalOptions="Fill" />
+                        --><!--<Picker 
                             Title="Choose breed"
                             ItemsSource="{Binding DogBreeds}"
                             ItemDisplayBinding="{Binding Breed}"
@@ -142,17 +144,17 @@
                             FontSize="14"
                             VerticalOptions="Center"
                             HorizontalOptions="Fill"
-                            />
+                            />--><!--
                     </Frame>
 
                     <Label Text="{Binding SelectedBreed.Breed, StringFormat='Selected: {0}'}"
                            FontSize="13"
                            TextColor="#666" />
 
-                    <!-- Owner Info -->
+                    --><!-- Owner Info --><!--
                     <Label Text="Owner Information" FontAttributes="Bold" TextColor="#444" Margin="0,10,0,0" />
 
-                    <Frame BackgroundColor="#F3F3F3" Padding="10" CornerRadius="10" HasShadow="False">
+                    <Frame  Padding="10" CornerRadius="10" HasShadow="False">
                         <Entry Placeholder="Owner name"
                                Text="{Binding OwnerName}"
                                HeightRequest="40"
@@ -161,7 +163,7 @@
                                PlaceholderColor="#999" />
                     </Frame>
 
-                    <Frame BackgroundColor="#F3F3F3" Padding="10" CornerRadius="10" HasShadow="False">
+                    <Frame  Padding="10" CornerRadius="10" HasShadow="False">
                         <Entry Placeholder="Owner contact"
                                Text="{Binding OwnerContact}"
                                Keyboard="Telephone"
@@ -171,24 +173,25 @@
                                PlaceholderColor="#999" />
                     </Frame>
 
-                    <!-- Date of Birth -->
+                    --><!-- Date of Birth --><!--
                     <Label Text="Date of Birth" FontAttributes="Bold" TextColor="#444" Margin="0,10,0,0" />
                     <Frame Padding="0"
                            CornerRadius="10"
-                           BackgroundColor="#F3F3F3"
+                           
                            HasShadow="False"
                            HeightRequest="45">
                         <DatePicker Date="{Binding DateOfBirth, Mode=TwoWay}"
+                                    MaximumDate="{x:Static sys:DateTime.Today}"
                                     FontSize="14"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Fill" />
                     </Frame>
 
-                    <!-- Photo Upload -->
+                    --><!-- Photo Upload --><!--
                     <Label Text="Pet Photo" FontAttributes="Bold" TextColor="#444" Margin="0,10,0,0" />
 
                     <Frame Padding="0"
-                           BackgroundColor="#EEE"
+                           
                            CornerRadius="10"
                            HasShadow="False"
                            HeightRequest="200">
@@ -205,7 +208,7 @@
                             CornerRadius="10"
                             HeightRequest="45" />
 
-                    <!-- Save -->
+                    --><!-- Save --><!--
                     <Button Text="Save Pet"
                             Command="{Binding SavePetCommand}"
                             BackgroundColor="#4CAF50"
@@ -214,6 +217,192 @@
                             HeightRequest="45" />
                 </VerticalStackLayout>
             </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>-->
+
+
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    x:Class="Pet_Care_Assistant.Views.PetListPage"
+    Title="Add a Pet"
+    BackgroundColor="{AppThemeBinding Light='#F5F5F5', Dark='#121212'}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="18">
+
+            <!-- Header -->
+            <Label Text="🐾 Add Your Pet"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="{AppThemeBinding Light='#222', Dark='#EEE'}"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10" />
+
+            <!-- Card Container -->
+            <Frame Padding="20"
+                   CornerRadius="15"
+                   HasShadow="True"
+                   BackgroundColor="{AppThemeBinding Light='White', Dark='#1E1E1E'}">
+
+                <VerticalStackLayout Spacing="16">
+
+                    <!-- Pet Name -->
+                    <Label Text="Pet Name"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light='#333', Dark='#DDD'}" />
+
+                    <Border Stroke="{AppThemeBinding Light='#E0E0E0', Dark='#333'}"
+                            StrokeShape="RoundRectangle 10"
+                            Background="{AppThemeBinding Light='White', Dark='#1E1E1E'}"
+                            Padding="10">
+                        <Entry Placeholder="Enter pet name"
+                               Text="{Binding Name}"
+                               BackgroundColor="Transparent"
+                               TextColor="{AppThemeBinding Light='#222', Dark='#EEE'}"
+                               PlaceholderColor="{AppThemeBinding Light='#888', Dark='#AAA'}" />
+                    </Border>
+
+                    <!-- Dog Breed -->
+                    <!--<Label Text="Dog Breed"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light='#333', Dark='#DDD'}" />
+
+                    <Border Stroke="{AppThemeBinding Light='#E0E0E0', Dark='#333'}"
+                            StrokeShape="RoundRectangle 10"
+                            Background="{AppThemeBinding Light='White', Dark='#1E1E1E'}"
+                            Padding="0"
+                            HeightRequest="45">
+                        <Picker Title="Select breed"
+                                ItemsSource="{Binding DogBreeds}"
+                                ItemDisplayBinding="{Binding Breed}"
+                                SelectedItem="{Binding SelectedBreed}"
+                                TextColor="{AppThemeBinding Light='#222', Dark='#EEE'}"
+                                FontSize="14"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Fill" />
+                    </Border>
+
+                    <Label Text="{Binding SelectedBreed.Breed, StringFormat='Selected: {0}'}"
+                           FontSize="13"
+                           TextColor="{AppThemeBinding Light='#666', Dark='#AAA'}"
+                           Margin="5,0,0,0" />-->
+
+                    <Label Text="Dog Breed"
+       FontAttributes="Bold"
+       TextColor="{AppThemeBinding Light='#333', Dark='#DDD'}" />
+
+                    <Border Stroke="{AppThemeBinding Light='#E0E0E0', Dark='#333'}"
+        StrokeShape="RoundRectangle 10"
+        Background="{AppThemeBinding Light='White', Dark='#1E1E1E'}"
+        Padding="6,0"
+        HeightRequest="50">
+
+                        <Grid VerticalOptions="Center" HeightRequest="50">
+                            <Picker 
+            Title="Select breed"
+            ItemsSource="{Binding DogBreeds}"
+            ItemDisplayBinding="{Binding Breed}"
+            SelectedItem="{Binding SelectedBreed}"
+            FontSize="13"
+            HorizontalOptions="Fill"
+            VerticalOptions="CenterAndExpand"
+            Margin="5,0"
+            TextColor="{AppThemeBinding Light='#222', Dark='#EEE'}" />
+                        </Grid>
+                    </Border>
+
+                    <Label Text="{Binding SelectedBreed.Breed, StringFormat='Selected: {0}'}"
+       FontSize="13"
+       TextColor="{AppThemeBinding Light='#666', Dark='#AAA'}"
+       Margin="5,0,0,0" />
+
+                    <!-- Owner Information -->
+                    <Label Text="Owner Information"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light='#333', Dark='#DDD'}"
+                           Margin="0,10,0,0" />
+
+                    <!-- Owner Name -->
+                    <Border Stroke="{AppThemeBinding Light='#E0E0E0', Dark='#333'}"
+                            StrokeShape="RoundRectangle 10"
+                            Background="{AppThemeBinding Light='White', Dark='#1E1E1E'}"
+                            Padding="10">
+                        <Entry Placeholder="Owner name"
+                               Text="{Binding OwnerName}"
+                               BackgroundColor="Transparent"
+                               TextColor="{AppThemeBinding Light='#222', Dark='#EEE'}"
+                               PlaceholderColor="{AppThemeBinding Light='#888', Dark='#AAA'}" />
+                    </Border>
+
+                    <!-- Owner Contact -->
+                    <Border Stroke="{AppThemeBinding Light='#E0E0E0', Dark='#333'}"
+                            StrokeShape="RoundRectangle 10"
+                            Background="{AppThemeBinding Light='White', Dark='#1E1E1E'}"
+                            Padding="10">
+                        <Entry Placeholder="Owner contact"
+                               Text="{Binding OwnerContact}"
+                               Keyboard="Telephone"
+                               BackgroundColor="Transparent"
+                               TextColor="{AppThemeBinding Light='#222', Dark='#EEE'}"
+                               PlaceholderColor="{AppThemeBinding Light='#888', Dark='#AAA'}" />
+                    </Border>
+
+                    <!-- Date of Birth -->
+                    <Label Text="Date of Birth"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light='#333', Dark='#DDD'}"
+                           Margin="0,10,0,0" />
+
+                    <Border Stroke="{AppThemeBinding Light='#E0E0E0', Dark='#333'}"
+                            StrokeShape="RoundRectangle 10"
+                            Background="{AppThemeBinding Light='White', Dark='#1E1E1E'}"
+                            Padding="0"
+                            HeightRequest="45">
+                        <DatePicker Date="{Binding DateOfBirth, Mode=TwoWay}"
+                                    MaximumDate="{x:Static sys:DateTime.Today}"
+                                    FontSize="14"
+                                    TextColor="{AppThemeBinding Light='#222', Dark='#EEE'}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Fill" />
+                    </Border>
+
+                    <!-- Pet Photo -->
+                    <Label Text="Pet Photo"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light='#333', Dark='#DDD'}"
+                           Margin="0,10,0,0" />
+
+                    <Border Stroke="{AppThemeBinding Light='#E0E0E0', Dark='#333'}"
+                            StrokeShape="RoundRectangle 10"
+                            Background="{AppThemeBinding Light='White', Dark='#1E1E1E'}"
+                            Padding="0"
+                            HeightRequest="200">
+                        <Image Source="{Binding PetPhotoPath}"
+                               Aspect="AspectFill"
+                               HeightRequest="200" />
+                    </Border>
+
+                    <!-- Upload Photo Button -->
+                    <Button Text="Upload Photo"
+                            Command="{Binding PickPhotoCommand}"
+                            BackgroundColor="#2196F3"
+                            TextColor="White"
+                            CornerRadius="10"
+                            HeightRequest="45" />
+
+                    <!-- Save Button -->
+                    <Button Text="Save Pet"
+                            Command="{Binding SavePetCommand}"
+                            BackgroundColor="#4CAF50"
+                            TextColor="White"
+                            CornerRadius="10"
+                            HeightRequest="45" />
+                </VerticalStackLayout>
+            </Frame>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

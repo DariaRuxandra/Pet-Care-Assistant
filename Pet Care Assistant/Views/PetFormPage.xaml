@@ -5,7 +5,7 @@
              xmlns:models="clr-namespace:Pet_Care_Assistant.Models"
              x:Class="Pet_Care_Assistant.Views.PetFormPage"
              Title="All pets"
-             BackgroundColor="#F5F5F5">
+             >
     
     <VerticalStackLayout Padding="15" Spacing="15">
 
